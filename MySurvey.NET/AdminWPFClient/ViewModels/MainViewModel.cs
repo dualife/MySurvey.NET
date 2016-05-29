@@ -1,5 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿// <copyright file="MainViewModel.cs" company="GosselCorp" author="gossel_c">
+// Copyright © 2016 Cyril GOSSELIN gossel_c@outlook.fr
+// This work is free. You can redistribute it and/or modify it under the
+// terms of the Do What The Fuck You Want To Public License, Version 2,
+// as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+// </copyright>
+
 using AdminWPFClient.DataServices;
+using GalaSoft.MvvmLight;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -11,38 +18,20 @@ namespace AdminWPFClient.ViewModels
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly IDataService _dataService;
-
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
         /// </summary>
         public const string WelcomeTitlePropertyName = "WelcomeTitle";
-
-        private string _welcomeTitle = string.Empty;
-
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
-        {
-            get
-            {
-                return _welcomeTitle;
-            }
-            set
-            {
-                Set(ref _welcomeTitle, value);
-            }
-        }
+        private readonly IDataService dataService;
+        private string welcomeTitle = string.Empty;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IDataService dataService)
         {
-            _dataService = dataService;
-            _dataService.GetData(
+            this.dataService = dataService;
+            this.dataService.GetData(
                 (item, error) =>
                 {
                     if (error != null)
@@ -53,6 +42,23 @@ namespace AdminWPFClient.ViewModels
 
                     WelcomeTitle = item.Title;
                 });
+        }
+
+        /// <summary>
+        /// Gets the WelcomeTitle property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string WelcomeTitle
+        {
+            get
+            {
+                return this.welcomeTitle;
+            }
+
+            set
+            {
+                this.Set(ref this.welcomeTitle, value);
+            }
         }
 
         ////public override void Cleanup()
