@@ -16,10 +16,10 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using AdminWPFClient.DataServices;
 
 namespace AdminWPFClient.ViewModels
 {

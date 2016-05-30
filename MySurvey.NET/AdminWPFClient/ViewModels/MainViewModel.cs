@@ -5,7 +5,7 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
-using AdminWPFClient.DataServices;
+using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 
 namespace AdminWPFClient.ViewModels

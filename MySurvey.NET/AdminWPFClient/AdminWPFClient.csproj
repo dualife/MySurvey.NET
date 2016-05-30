@@ -76,9 +76,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Design\DesignDataService.cs" />
-    <Compile Include="DataServices\DataItem.cs" />
-    <Compile Include="DataServices\DataService.cs" />
-    <Compile Include="DataServices\IDataService.cs" />
+    <Compile Include="Services\DataItem.cs" />
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\IDataService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />

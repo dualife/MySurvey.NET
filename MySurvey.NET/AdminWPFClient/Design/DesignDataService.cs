@@ -1,5 +1,5 @@
 ﻿using System;
-using AdminWPFClient.DataServices;
+using AdminWPFClient.Services;
 
 namespace AdminWPFClient.Design
 {

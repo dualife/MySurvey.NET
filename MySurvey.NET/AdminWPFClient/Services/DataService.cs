@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdminWPFClient.DataServices
+namespace AdminWPFClient.Services
 {
     public class DataService : IDataService
     {

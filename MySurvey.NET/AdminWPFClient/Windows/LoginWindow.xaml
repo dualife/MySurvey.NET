@@ -5,7 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        x:Name="LoginWd" Title="MySurvey.NET" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Width="300" Height="350"
         DataContext="{Binding Login, Source={StaticResource Locator}}">
-    <Grid>
-    </Grid>
+    <DockPanel>
+        
+        <StackPanel DockPanel.Dock="Bottom" Margin="3">
+            
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Nom d'utilisateur :"/>
+                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="100" Text="{Binding LoginField}"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Mot de Passe :"/>
+                <PasswordBox x:Name="PasswordBx" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+
+            </Grid>
+
+            <Button HorizontalAlignment="Center" Margin="3" Content="Connecter"
+                    Command="{Binding ConnectCmd}" CommandParameter="{Binding SecurePassword, ElementName=PasswordBx}"/>
+
+        </StackPanel>
+        
+        <TextBlock Text="Bienvenue sur l'interface d'administration MySurvey.NET" FontSize="36" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center"/>
+        
+    </DockPanel>
 </Window>

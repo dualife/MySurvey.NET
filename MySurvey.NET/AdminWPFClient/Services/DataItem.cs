@@ -1,4 +1,4 @@
-﻿namespace AdminWPFClient.DataServices
+﻿namespace AdminWPFClient.Services
 {
     public class DataItem
     {
