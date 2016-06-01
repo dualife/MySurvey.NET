@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
-        Height="300"
-        Width="300"
-        Title="MVVM Light Application"
+        Width="600" Height="400" Title="MySurvey.NET"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,15 +16,26 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid x:Name="LayoutRoot">
+    <DockPanel>
 
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
+        <StackPanel DockPanel.Dock="Top">
+            
+            <Grid Margin="3">
+                <Label Content="{Binding WindowTitleLabel}"/>
+                <Label HorizontalAlignment="Right" Content="{Binding AccountLabel}"/>
+            </Grid>
+            
+            <Button Margin="3" HorizontalAlignment="Left" Content="Aide"/>
+            
+        </StackPanel>
 
-    </Grid>
+        <TabControl Margin="3" TabStripPlacement="Bottom">
+            <TabItem Header="Acceuil"></TabItem>
+            <TabItem Header="Archives"></TabItem>
+            <TabItem Header="Mentions"></TabItem>
+            <TabItem Header="Confirmation"></TabItem>
+            <TabItem Header="Clôture"></TabItem>
+        </TabControl>
+
+    </DockPanel>
 </Window>

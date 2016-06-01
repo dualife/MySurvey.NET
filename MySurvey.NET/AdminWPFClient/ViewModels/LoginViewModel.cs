@@ -5,12 +5,11 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
+using AdminWPFClient.Services;
 using AdminWPFClient.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using System.Security;
-using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -22,14 +21,16 @@ namespace AdminWPFClient.ViewModels
     /// </summary>
     public class LoginViewModel : ViewModelBase
     {
+        private IUserService userService = null;
         private string loginField = "admin";
         private RelayCommand<SecureString> connectCmd = null;
 
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
         /// </summary>
-        public LoginViewModel()
+        public LoginViewModel(IUserService userService)
         {
+            this.userService = userService;
         }
 
         public string LoginField
@@ -53,7 +54,11 @@ namespace AdminWPFClient.ViewModels
                     securePassword =>
                     {
                         /// TODO: authentification and move to MainWindow
-                        
+                        if (!this.userService.Authenticate(this.LoginField, securePassword))
+                        {
+                            return;
+                        }
+
                         var currentWindow = App.Current.Windows[0];
                         var newWindow = new MainWindow();
                         currentWindow.Close();

@@ -45,6 +45,9 @@ namespace AdminWPFClient.ViewModels
                 SimpleIoc.Default.Register<IDataService, DataService>();
             }
 
+            // DataServices
+            SimpleIoc.Default.Register<IUserService, MockUserService>();
+
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
