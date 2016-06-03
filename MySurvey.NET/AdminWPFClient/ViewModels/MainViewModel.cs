@@ -5,60 +5,90 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
+using System;
 using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace AdminWPFClient.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// See http://www.mvvmlight.net
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// The <see cref="WelcomeTitle" /> property's name.
-        /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
-        private readonly IDataService dataService;
-        private string welcomeTitle = string.Empty;
+        private readonly IUserService userService;
+        private string windowTitleLabel = string.Empty;
+        private string accountLabel = string.Empty;
+        private RelayCommand<string> tabChangedCmd = null;
+        private RelayCommand helpCmd = null;
 
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(IUserService userService)
         {
-            this.dataService = dataService;
-            this.dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
-
-                    WelcomeTitle = item.Title;
-                });
+            this.userService = userService;
+            this.AccountLabel = "Bienvenue, " + userService.GetLoggedUsername();
         }
 
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
+        public string WindowTitleLabel
         {
             get
             {
-                return this.welcomeTitle;
+                return this.windowTitleLabel;
             }
 
             set
             {
-                this.Set(ref this.welcomeTitle, value);
+                this.Set(ref this.windowTitleLabel, value);
             }
+        }
+
+        public string AccountLabel
+        {
+            get
+            {
+                return this.accountLabel;
+            }
+
+            set
+            {
+                this.Set(ref this.accountLabel, value);
+            }
+        }
+
+        public RelayCommand<string> TabChangedCmd
+        {
+            get
+            {
+                return this.tabChangedCmd
+                  ?? (this.tabChangedCmd = new RelayCommand<string>(
+                    this.TabChangedAction));
+            }
+
+            set
+            {
+                this.Set(ref this.tabChangedCmd, value);
+            }
+        }
+
+        public RelayCommand HelpCmd
+        {
+            get
+            {
+                return this.helpCmd
+                  ?? (this.helpCmd = new RelayCommand(
+                      () =>
+                      {
+                          throw new NotImplementedException();
+                      }
+                    ));
+            }
+
+            set
+            {
+                this.Set(ref this.helpCmd, value);
+            }
+        }
+
+        private void TabChangedAction(string obj)
+        {
+            throw new NotImplementedException();
         }
 
         ////public override void Cleanup()

@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Width="600" Height="400" Title="MySurvey.NET"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -19,22 +21,29 @@
     <DockPanel>
 
         <StackPanel DockPanel.Dock="Top">
-            
+
             <Grid Margin="3">
                 <Label Content="{Binding WindowTitleLabel}"/>
                 <Label HorizontalAlignment="Right" Content="{Binding AccountLabel}"/>
             </Grid>
-            
-            <Button Margin="3" HorizontalAlignment="Left" Content="Aide"/>
-            
+
+            <Button Margin="3" HorizontalAlignment="Left" Content="Aide" Command="{Binding HelpCmd}"/>
+
         </StackPanel>
 
-        <TabControl Margin="3" TabStripPlacement="Bottom">
-            <TabItem Header="Acceuil"></TabItem>
-            <TabItem Header="Archives"></TabItem>
-            <TabItem Header="Mentions"></TabItem>
-            <TabItem Header="Confirmation"></TabItem>
-            <TabItem Header="Clôture"></TabItem>
+        <TabControl Margin="3" TabStripPlacement="Bottom" x:Name="MainTc">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <cmd:EventToCommand Command="{Binding TabChangedCmd}"
+                            PassEventArgsToCommand="True" CommandParameter="{Binding SelectedItem.Name, ElementName=MainTc}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <TabItem Header="Acceuil" x:Name="acceuilTi"></TabItem>
+            <TabItem Header="Archives" x:Name="archivesTi"></TabItem>
+            <TabItem Header="Mentions" x:Name="mentionsTi"></TabItem>
+            <TabItem Header="Confirmation" x:Name="confirmationTi"></TabItem>
+            <TabItem Header="Clôture" x:Name="clotureTi"></TabItem>
         </TabControl>
 
     </DockPanel>

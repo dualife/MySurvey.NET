@@ -17,5 +17,6 @@ namespace AdminWPFClient.Services
     public interface IUserService
     {
         bool Authenticate(string userName, SecureString securePassword);
+        string GetLoggedUsername();
     }
 }

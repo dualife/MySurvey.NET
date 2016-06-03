@@ -13,21 +13,12 @@ using System.Security;
 
 namespace AdminWPFClient.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that a View can data bind to.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class LoginViewModel : ViewModelBase
     {
         private IUserService userService = null;
         private string loginField = "admin";
         private RelayCommand<SecureString> connectCmd = null;
 
-        /// <summary>
-        /// Initializes a new instance of the LoginViewModel class.
-        /// </summary>
         public LoginViewModel(IUserService userService)
         {
             this.userService = userService;
@@ -53,7 +44,6 @@ namespace AdminWPFClient.ViewModels
                 return this.connectCmd ?? new RelayCommand<SecureString>(
                     securePassword =>
                     {
-                        /// TODO: authentification and move to MainWindow
                         if (!this.userService.Authenticate(this.LoginField, securePassword))
                         {
                             return;
