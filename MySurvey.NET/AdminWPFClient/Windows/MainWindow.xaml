@@ -7,6 +7,7 @@
         mc:Ignorable="d ignore"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:uc="clr-namespace:AdminWPFClient.UserControls"
         Width="600" Height="400" Title="MySurvey.NET"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -34,16 +35,36 @@
         <TabControl Margin="3" TabStripPlacement="Bottom" x:Name="MainTc">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <cmd:EventToCommand Command="{Binding TabChangedCmd}"
-                            PassEventArgsToCommand="True" CommandParameter="{Binding SelectedItem.Name, ElementName=MainTc}"/>
+                    <cmd:EventToCommand Command="{Binding TabSelectionChangedCmd}"
+                                        CommandParameter="{Binding SelectedItem.Name, ElementName=MainTc}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-            <TabItem Header="Acceuil" x:Name="acceuilTi"></TabItem>
-            <TabItem Header="Archives" x:Name="archivesTi"></TabItem>
-            <TabItem Header="Mentions" x:Name="mentionsTi"></TabItem>
-            <TabItem Header="Confirmation" x:Name="confirmationTi"></TabItem>
-            <TabItem Header="Clôture" x:Name="clotureTi"></TabItem>
+            <TabItem Header="Acceuil" x:Name="acceuilTi">
+
+                <uc:FormsManagementUserControl x:Name="acceuilUc"/>
+
+            </TabItem>
+            <TabItem Header="Archives" x:Name="archivesTi">
+
+                <uc:FormsManagementUserControl x:Name="archiveUc"/>
+
+            </TabItem>
+            <TabItem Header="Mentions" x:Name="mentionsTi">
+
+                <uc:TextTabUserControl x:Name="mentionUc"/>
+
+            </TabItem>
+            <TabItem Header="Confirmation" x:Name="confirmationTi">
+
+                <uc:TextTabUserControl x:Name="confirmationUc"/>
+
+            </TabItem>
+            <TabItem Header="Clôture" x:Name="clotureTi">
+
+                <uc:TextTabUserControl x:Name="clotureUc"/>
+
+            </TabItem>
         </TabControl>
 
     </DockPanel>

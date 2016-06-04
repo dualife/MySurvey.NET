@@ -6,22 +6,25 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdminWPFClient.Services
 {
     public class MockUserService : IUserService
     {
-        private string currentLoggedUserName;
+        private string currentLoggedUserName = string.Empty;
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
             this.currentLoggedUserName = userName;
             return true;
+        }
+
+        public string GetLoggedUsername()
+        {
+            if (string.IsNullOrWhiteSpace(this.currentLoggedUserName))
+                throw new InvalidOperationException("not logged yet");
+            return this.currentLoggedUserName;
         }
     }
 }

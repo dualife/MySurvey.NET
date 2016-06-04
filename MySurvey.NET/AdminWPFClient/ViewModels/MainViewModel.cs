@@ -9,16 +9,17 @@ using System;
 using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         private readonly IUserService userService;
-        private string windowTitleLabel = string.Empty;
+        private string windowTitleLabel = "Tableau de bord des formulaires";
         private string accountLabel = string.Empty;
-        private RelayCommand<string> tabChangedCmd = null;
         private RelayCommand helpCmd = null;
+        private RelayCommand<string> tabSelectionChangedCmd = null;
 
         public MainViewModel(IUserService userService)
         {
@@ -52,21 +53,6 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<string> TabChangedCmd
-        {
-            get
-            {
-                return this.tabChangedCmd
-                  ?? (this.tabChangedCmd = new RelayCommand<string>(
-                    this.TabChangedAction));
-            }
-
-            set
-            {
-                this.Set(ref this.tabChangedCmd, value);
-            }
-        }
-
         public RelayCommand HelpCmd
         {
             get
@@ -75,7 +61,7 @@ namespace AdminWPFClient.ViewModels
                   ?? (this.helpCmd = new RelayCommand(
                       () =>
                       {
-                          throw new NotImplementedException();
+                          MessageBox.Show("Lis la doc!");
                       }
                     ));
             }
@@ -86,9 +72,43 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        private void TabChangedAction(string obj)
+        public RelayCommand<string> TabSelectionChangedCmd
         {
-            throw new NotImplementedException();
+            get
+            {
+                return this.tabSelectionChangedCmd
+                  ?? (this.tabSelectionChangedCmd = new RelayCommand<string>(
+                    this.TabChangedAction));
+            }
+
+            set
+            {
+                this.Set(ref this.tabSelectionChangedCmd, value);
+            }
+        }
+
+        private void TabChangedAction(string tabName)
+        {
+            switch (tabName)
+            {
+                case "acceuilTi":
+                    this.WindowTitleLabel = "Tableau de bord des formulaires";
+                    break;
+                case "archivesTi":
+                    this.WindowTitleLabel = "Archives des formulaires";
+                    break;
+                case "mentionsTi":
+                    this.WindowTitleLabel = "Mentions";
+                    break;
+                case "confirmationTi":
+                    this.WindowTitleLabel = "Confirmation";
+                    break;
+                case "clotureTi":
+                    this.WindowTitleLabel = "Clôture";
+                    break;
+                default:
+                    break;
+            }
         }
 
         ////public override void Cleanup()
