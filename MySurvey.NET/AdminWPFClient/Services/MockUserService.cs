@@ -13,6 +13,9 @@ namespace AdminWPFClient.Services
     public class MockUserService : IUserService
     {
         private string currentLoggedUserName = string.Empty;
+        private string mentionsText = string.Empty;
+        private string confirmationText = string.Empty;
+        private string clotureText = string.Empty;
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
@@ -23,8 +26,59 @@ namespace AdminWPFClient.Services
         public string GetLoggedUsername()
         {
             if (string.IsNullOrWhiteSpace(this.currentLoggedUserName))
+            {
                 throw new InvalidOperationException("not logged yet");
+            }
+
             return this.currentLoggedUserName;
+        }
+
+        public string GetMentionsText()
+        {
+            return this.mentionsText;
+        }
+
+        public bool SetMentionsText(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
+
+            this.mentionsText = text;
+            return true;
+        }
+
+        public string GetConfirmationText()
+        {
+            return this.confirmationText;
+        }
+
+        public bool SetConfirmationText(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
+
+            this.confirmationText = text;
+            return true;
+        }
+
+        public string GetClotureText()
+        {
+            return this.clotureText;
+        }
+
+        public bool SetClotureText(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
+
+            this.clotureText = text;
+            return true;
         }
     }
 }

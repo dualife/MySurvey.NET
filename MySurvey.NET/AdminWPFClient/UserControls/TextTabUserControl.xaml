@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="100" d:DesignWidth="300"
              x:Name="TextTabUc"
              DataContext="{Binding TextTab, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
@@ -17,7 +17,23 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
-    </Grid>
-    
+    <DockPanel>
+
+        <Label DockPanel.Dock="Top" Margin="3" Content="{Binding TabTitleLabel}"/>
+        <DockPanel>
+
+            <Button DockPanel.Dock="Bottom" Content="Sauvegarder" Command="{Binding SaveCmd}" HorizontalAlignment="Right"/>
+            <WrapPanel DockPanel.Dock="Bottom" Visibility="{Binding ShowUploadBar, Converter={StaticResource BoolToVis}}" Margin="3">
+
+                <Label Margin="3" Content="{Binding FileUploadLabel}"/>
+                <Button Content="Supprimer" Margin="3" Command="{Binding DeleteFileCmd}"/>
+                <Button Content="Charger" Margin="3" Command="{Binding LoadFileCmd}"/>
+
+            </WrapPanel>
+            <TextBox AcceptsReturn="True" Margin="3" Text="{Binding TextContent, UpdateSourceTrigger=PropertyChanged}" AutoWordSelection="True" MaxLength="1024"/>
+
+        </DockPanel>
+
+    </DockPanel>
+
 </UserControl>

@@ -50,6 +50,7 @@ namespace AdminWPFClient.ViewModels
 
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<TextTabViewModel>();
         }
 
         /// <summary>
@@ -71,6 +72,14 @@ namespace AdminWPFClient.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
+
+        public TextTabViewModel TextTab
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TextTabViewModel>();
             }
         }
 

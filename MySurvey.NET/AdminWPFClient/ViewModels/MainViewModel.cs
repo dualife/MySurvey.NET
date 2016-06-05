@@ -62,8 +62,7 @@ namespace AdminWPFClient.ViewModels
                       () =>
                       {
                           MessageBox.Show("Lis la doc!");
-                      }
-                    ));
+                      }));
             }
 
             set

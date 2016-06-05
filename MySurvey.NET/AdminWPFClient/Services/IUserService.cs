@@ -5,18 +5,26 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdminWPFClient.Services
 {
     public interface IUserService
     {
         bool Authenticate(string userName, SecureString securePassword);
+
         string GetLoggedUsername();
+
+        string GetMentionsText();
+
+        bool SetMentionsText(string text);
+
+        string GetConfirmationText();
+
+        bool SetConfirmationText(string text);
+
+        string GetClotureText();
+
+        bool SetClotureText(string text);
     }
 }
