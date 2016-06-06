@@ -76,10 +76,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Models\Forms.cs" />
     <Compile Include="Services\DataItem.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\IFormsManagementService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\MockFormsManagementService.cs" />
     <Compile Include="Services\MockUserService.cs" />
     <Compile Include="UserControls\FormsManagementUserControl.xaml.cs">
       <DependentUpon>FormsManagementUserControl.xaml</DependentUpon>
@@ -87,6 +90,7 @@
     <Compile Include="UserControls\TextTabUserControl.xaml.cs">
       <DependentUpon>TextTabUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\FormsManagementViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TextTabViewModel.cs" />
@@ -155,7 +159,6 @@
     <Folder Include="Assets\" />
     <Folder Include="Converters\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Models\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

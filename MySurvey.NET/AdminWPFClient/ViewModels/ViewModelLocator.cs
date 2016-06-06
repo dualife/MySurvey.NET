@@ -47,9 +47,11 @@ namespace AdminWPFClient.ViewModels
 
             // DataServices
             SimpleIoc.Default.Register<IUserService, MockUserService>();
+            SimpleIoc.Default.Register<IFormsManagementService, MockFormsManagementService>();
 
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<FormsManagementViewModel>();
             SimpleIoc.Default.Register<TextTabViewModel>();
         }
 
@@ -72,6 +74,14 @@ namespace AdminWPFClient.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
+
+        public FormsManagementViewModel FormsManagement
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<FormsManagementViewModel>();
             }
         }
 

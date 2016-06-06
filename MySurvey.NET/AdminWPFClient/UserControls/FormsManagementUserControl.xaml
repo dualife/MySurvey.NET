@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="100" d:DesignWidth="300"
              x:Name="FormsManagmentUc"
              DataContext="{Binding FormsManagement, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
@@ -17,7 +17,21 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
-    <Grid>
-    </Grid>
+    <DockPanel>
+
+        <WrapPanel DockPanel.Dock="Top" Margin="3">
+            <Button Content="Nouveau Formulaire" Margin="3" Command="{Binding CreateFormCmd}"/>
+        </WrapPanel>
+        
+        <DockPanel DockPanel.Dock="Bottom" Margin="3">
+            <Button DockPanel.Dock="Left" Margin="3" Content="Archiver" Command="{Binding ArchiveFormsCmd}"/>
+            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="3" Content="Archiver" Command="{Binding DeleteFormsCmd}"/>
+        </DockPanel>
+
+        <ListView Margin="3" ItemsSource="{Binding FormsList}">
+            
+        </ListView>
+        
+    </DockPanel>
     
 </UserControl>
