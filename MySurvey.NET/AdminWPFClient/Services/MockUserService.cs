@@ -16,6 +16,7 @@ namespace AdminWPFClient.Services
         private string mentionsText = string.Empty;
         private string confirmationText = string.Empty;
         private string clotureText = string.Empty;
+        private string mentionsFile = string.Empty;
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
@@ -40,11 +41,6 @@ namespace AdminWPFClient.Services
 
         public bool SetMentionsText(string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return false;
-            }
-
             this.mentionsText = text;
             return true;
         }
@@ -56,11 +52,6 @@ namespace AdminWPFClient.Services
 
         public bool SetConfirmationText(string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return false;
-            }
-
             this.confirmationText = text;
             return true;
         }
@@ -72,12 +63,24 @@ namespace AdminWPFClient.Services
 
         public bool SetClotureText(string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return false;
-            }
-
             this.clotureText = text;
+            return true;
+        }
+
+        public string GetMentionsFile()
+        {
+            return this.mentionsFile;
+        }
+
+        public bool SaveMentionsFile(string filePath)
+        {
+            this.mentionsFile = filePath;
+            return true;
+        }
+
+        public bool DeleteMentionsFile()
+        {
+            this.mentionsFile = string.Empty;
             return true;
         }
     }

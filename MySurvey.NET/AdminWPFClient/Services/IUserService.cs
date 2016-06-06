@@ -26,5 +26,11 @@ namespace AdminWPFClient.Services
         string GetClotureText();
 
         bool SetClotureText(string text);
+
+        string GetMentionsFile();
+
+        bool SaveMentionsFile(string filePath);
+
+        bool DeleteMentionsFile();
     }
 }

@@ -8,16 +8,22 @@
 using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
     public class TextTabViewModel : ViewModelBase
     {
         private IUserService userService = null;
+        private string context = string.Empty;
         private string tabTitleLabel = string.Empty;
         private string fileUploadLabel = string.Empty;
         private string textContent = string.Empty;
         private bool showUploadBar = false;
+        private string filePath = string.Empty;
         private RelayCommand<string> loadedCmd = null;
         private RelayCommand saveCmd = null;
         private RelayCommand deleteFileCmd = null;
@@ -85,7 +91,7 @@ namespace AdminWPFClient.ViewModels
             get
             {
                 return this.loadedCmd ?? (this.loadedCmd = new RelayCommand<string>(
-                    loadedAction));
+                    this.LoadedAction));
             }
 
             set
@@ -102,6 +108,27 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         // saveBtn
+                        switch (this.context)
+                        {
+                            case "mentionUc":
+                                this.userService.SetMentionsText(this.TextContent);
+                                break;
+                            case "confirmationUc":
+                                this.userService.SetConfirmationText(this.TextContent);
+                                break;
+                            case "clotureUc":
+                                this.userService.SetClotureText(this.TextContent);
+                                break;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(this.FilePath))
+                        {
+                            this.userService.SaveMentionsFile(this.FilePath);
+                            this.FileUploadLabel = "Fichier chargé : " + Path.GetFileName(this.FilePath);
+                            this.DeleteFileCmd.RaiseCanExecuteChanged();
+                        }
+
+                        MessageBox.Show("Sauvegardé!");
                     }));
             }
 
@@ -119,6 +146,20 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         // deleteBtn
+                        this.userService.DeleteMentionsFile();
+                        this.FileUploadLabel = "Fichié chargé : Aucun.";
+                        this.FilePath = string.Empty;
+                        this.DeleteFileCmd.RaiseCanExecuteChanged();
+                    },
+                    () =>
+                    {
+                        // CanExecute
+                        if (string.IsNullOrWhiteSpace(this.userService.GetMentionsFile()))
+                        {
+                            return false;
+                        }
+
+                        return true;
                     }));
             }
 
@@ -136,6 +177,17 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         // loadBtn
+                        var openFileDialog = new OpenFileDialog();
+                        openFileDialog.ValidateNames = true;
+                        openFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                        openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                        openFileDialog.Multiselect = false;
+                        if (openFileDialog.ShowDialog() == true)
+                        {
+                            this.FilePath = openFileDialog.FileName;
+                            var justFilename = Path.GetFileName(this.FilePath);
+                            this.FileUploadLabel = "Fichier à charger : " + justFilename;
+                        }
                     }));
             }
 
@@ -145,24 +197,48 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        private void loadedAction(string ucName)
+        private string FilePath
+        {
+            get
+            {
+                return this.filePath;
+            }
+
+            set
+            {
+                this.Set(ref this.filePath, value);
+            }
+        }
+
+        private void LoadedAction(string uclName)
         {
             // OnLoad
-            switch (ucName)
+            this.context = uclName;
+            this.ShowUploadBar = false;
+            switch (this.context)
             {
                 case "mentionUc":
                     this.TabTitleLabel = "Mentions légales appliquées à chaque formulaire";
                     this.ShowUploadBar = true;
                     this.TextContent = this.userService.GetMentionsText();
+                    this.FilePath = this.userService.GetMentionsFile();
+                    if (string.IsNullOrWhiteSpace(this.FilePath))
+                    {
+                        this.FileUploadLabel = "Fichier chargé : Aucun.";
+                    }
+                    else
+                    {
+                        this.FileUploadLabel = "Fichié chargé : " + Path.GetFileName(this.FilePath);
+                        this.DeleteFileCmd.RaiseCanExecuteChanged();
+                    }
+
                     break;
                 case "confirmationUc":
                     this.TabTitleLabel = "Message de confirmation appliqué à chaque formulaire";
-                    this.ShowUploadBar = false;
                     this.TextContent = this.userService.GetConfirmationText();
                     break;
                 case "clotureUc":
                     this.TabTitleLabel = "Message affiché une fois que le formulaire est clôturé.";
-                    this.ShowUploadBar = false;
                     this.TextContent = this.userService.GetClotureText();
                     break;
             }
