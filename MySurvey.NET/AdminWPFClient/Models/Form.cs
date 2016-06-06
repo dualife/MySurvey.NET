@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AdminWPFClient.Models
 {
-    class Form
+    public class Form
     {
     }
 }

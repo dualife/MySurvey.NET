@@ -16,7 +16,7 @@ namespace AdminWPFClient.ViewModels
 {
     public class FormsManagementViewModel : ViewModelBase
     {
-        IFormsManagementService formsService;
+        private IFormsManagementService formsService;
         private ObservableCollection<Form> formsList = null;
         private string context = string.Empty;
         private RelayCommand<string> loadedCmd = null;
@@ -27,6 +27,19 @@ namespace AdminWPFClient.ViewModels
         public FormsManagementViewModel(IFormsManagementService formsService)
         {
             this.formsService = formsService;
+        }
+
+        public ObservableCollection<Form> FormsList
+        {
+            get
+            {
+                return this.formsList;
+            }
+
+            set
+            {
+                this.Set(ref this.formsList, value);
+            }
         }
 
         public RelayCommand<string> LoadedCmd
