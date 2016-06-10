@@ -6,14 +6,32 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdminWPFClient.Models
 {
     public class Form
     {
+        public enum State
+        {
+            InProgress = 0,
+            Validated = 1,
+            Published = 2,
+            Closed = 3,
+            Archived = 4
+        }
+
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public DateTime? CreationDate { get; set; }
+
+        public DateTime? ModificationDate { get; set; }
+
+        public string AuthorName { get; set; }
+
+        public State Status { get; set; }
+
+        public int NumberOfAnswers { get; set; }
     }
 }

@@ -16,20 +16,23 @@ namespace AdminWPFClient.ViewModels
 {
     public class FormsManagementViewModel : ViewModelBase
     {
-        private IFormsManagementService formsService;
-        private ObservableCollection<Form> formsList = null;
+        private IFormsManagementService formsService = null;
+        private IUserService userService = null;
+        private ObservableCollection<SelectableForm> formsList = null;
         private string context = string.Empty;
         private RelayCommand<string> loadedCmd = null;
         private RelayCommand createFormCmd = null;
         private RelayCommand archiveFormsCmd = null;
         private RelayCommand deleteFormsCmd = null;
 
-        public FormsManagementViewModel(IFormsManagementService formsService)
+        public FormsManagementViewModel(IUserService userService, IFormsManagementService formsService)
         {
+            this.userService = userService;
             this.formsService = formsService;
+            this.formsList = new ObservableCollection<SelectableForm>();
         }
 
-        public ObservableCollection<Form> FormsList
+        public ObservableCollection<SelectableForm> FormsList
         {
             get
             {
@@ -63,7 +66,12 @@ namespace AdminWPFClient.ViewModels
                 return this.createFormCmd ?? (this.createFormCmd = new RelayCommand(
                     () =>
                     {
-                        throw new NotImplementedException();
+                        var newForm = this.formsService.CreateForm(userService);
+                        this.FormsList.Add(new SelectableForm()
+                        {
+                            IsSelected = false,
+                            Form = newForm
+                        });
                     }));
             }
 

@@ -77,6 +77,7 @@
     </ApplicationDefinition>
     <Compile Include="Design\DesignDataService.cs" />
     <Compile Include="Models\Form.cs" />
+    <Compile Include="Models\SelectableForm.cs" />
     <Compile Include="Services\DataItem.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\IDataService.cs" />

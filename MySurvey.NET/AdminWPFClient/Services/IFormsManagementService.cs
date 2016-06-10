@@ -5,15 +5,12 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Services
 {
     public interface IFormsManagementService
     {
+        Form CreateForm(IUserService userService);
     }
 }

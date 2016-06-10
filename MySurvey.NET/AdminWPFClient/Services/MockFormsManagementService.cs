@@ -10,10 +10,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Services
 {
     public class MockFormsManagementService : IFormsManagementService
     {
+        private List<Form> forms = null;
+
+        public MockFormsManagementService()
+        {
+            this.forms = new List<Form>();
+        }
+
+        public Form CreateForm(IUserService userService)
+        {
+            var newForm = new Form()
+            {
+                Id = this.GetNewId(),
+                AuthorName = userService.GetLoggedUsername(),
+                CreationDate = DateTime.Now,
+                ModificationDate = DateTime.Now,
+                NumberOfAnswers = 10,
+                Status = Form.State.InProgress,
+                Title = "newEmptyForm"
+            };
+
+            this.forms.Add(newForm);
+            return newForm;
+        }
+
+        private int GetNewId()
+        {
+            return this.forms.Count + 1;
+        }
     }
 }
