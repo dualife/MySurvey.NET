@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\SelectableForm.cs" />
     <Compile Include="Services\DataItem.cs" />
@@ -159,7 +160,6 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Converters\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

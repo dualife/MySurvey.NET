@@ -10,6 +10,7 @@ using AdminWPFClient.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Security;
+using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -44,8 +45,10 @@ namespace AdminWPFClient.ViewModels
                 return this.connectCmd ?? new RelayCommand<SecureString>(
                     securePassword =>
                     {
+                        /// TODO securepassword always empty...
                         if (!this.userService.Authenticate(this.LoginField, securePassword))
                         {
+                            MessageBox.Show("Mot de passe invalide!");
                             return;
                         }
 
