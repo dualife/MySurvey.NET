@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -89,6 +90,10 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         throw new NotImplementedException();
+                    },
+                    () =>
+                    {
+                        return this.formsList.Any((item) => item.IsSelected);
                     }));
             }
 
@@ -106,6 +111,10 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         throw new NotImplementedException();
+                    },
+                    () =>
+                    {
+                        return this.formsList.Any((item) => item.IsSelected);
                     }));
             }
 

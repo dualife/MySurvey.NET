@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:assets="clr-namespace:AdminWPFClient.Assets"
              xmlns:local="clr-namespace:AdminWPFClient.UserControls"
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="100" d:DesignWidth="300"
+             d:DesignHeight="100" d:DesignWidth="500"
              x:Name="FormsManagmentUc"
              DataContext="{Binding FormsManagement, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
@@ -16,22 +17,64 @@
                                 CommandParameter="{Binding Name, ElementName=FormsManagmentUc}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="URLCt">
+            <StackPanel Orientation="Horizontal">
+
+                <Button>
+                    <assets:GoToFormUrlIcon/>
+                </Button>
+
+                <Button>
+                    <assets:CopyFormUrlIcon/>
+                </Button>
+
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
     <DockPanel>
 
         <WrapPanel DockPanel.Dock="Top" Margin="3">
             <Button Content="Nouveau Formulaire" Margin="3" Command="{Binding CreateFormCmd}"/>
         </WrapPanel>
-        
+
         <DockPanel DockPanel.Dock="Bottom" Margin="3">
             <Button DockPanel.Dock="Left" Margin="3" Content="Archiver" Command="{Binding ArchiveFormsCmd}"/>
-            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="3" Content="Archiver" Command="{Binding DeleteFormsCmd}"/>
+            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="3" Content="Supprimer" Command="{Binding DeleteFormsCmd}"/>
         </DockPanel>
 
         <ListView Margin="3" ItemsSource="{Binding FormsList}">
-            
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+
+                    <GridViewColumn Header="Titre" DisplayMemberBinding="{Binding Form.Title}"/>
+
+                    <GridViewColumn Header="Liens" CellTemplate="{StaticResource URLCt}"/>
+
+
+
+                    <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate}"/>
+
+                    <GridViewColumn Header="Modification" DisplayMemberBinding="{Binding Form.ModificationDate}"/>
+
+                    <GridViewColumn Header="Auteur" DisplayMemberBinding="{Binding Form.AuthorName}"/>
+
+                    <GridViewColumn Header="Statut" DisplayMemberBinding="{Binding Form.Status}"/>
+
+                    <GridViewColumn Header="Nb réponses" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
+
+                    <GridViewColumn Header="Actions"/>
+
+                    <GridViewColumn Header="Tous" DisplayMemberBinding="{Binding IsSelected}"/>
+
+                </GridView>
+            </ListView.View>
         </ListView>
-        
+
     </DockPanel>
-    
+
 </UserControl>

@@ -75,6 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Assets\CopyFormUrlIcon.xaml.cs">
+      <DependentUpon>CopyFormUrlIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\GoToFormUrlIcon.xaml.cs">
+      <DependentUpon>GoToFormUrlIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Design\DesignDataService.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\SelectableForm.cs" />
@@ -99,6 +105,14 @@
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Assets\CopyFormUrlIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\GoToFormUrlIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\FormsManagementUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,7 +171,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
     <Folder Include="Converters\" />
     <Folder Include="Extensions\" />
     <Folder Include="Utils\" />
