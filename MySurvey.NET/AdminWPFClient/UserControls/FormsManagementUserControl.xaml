@@ -47,15 +47,34 @@
             <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="3" Content="Supprimer" Command="{Binding DeleteFormsCmd}"/>
         </DockPanel>
 
-        <ListView Margin="3" ItemsSource="{Binding FormsList}">
+        <ListView x:Name="FormsListLv" Margin="3" ItemsSource="{Binding FormsList}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True">
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsAllFormsSelected}"/>
+                                <TextBlock Text="Tous" Margin="3,0,0,0"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <cmd:EventToCommand Command="{Binding FormsManagement.UpdateFormsSelectedCmd, Source={StaticResource Locator}}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
                     <GridViewColumn Header="Titre" DisplayMemberBinding="{Binding Form.Title}"/>
 
                     <GridViewColumn Header="Liens" CellTemplate="{StaticResource URLCt}"/>
-
-
 
                     <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate}"/>
 
@@ -68,8 +87,6 @@
                     <GridViewColumn Header="Nb réponses" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
 
                     <GridViewColumn Header="Actions"/>
-
-                    <GridViewColumn Header="Tous" DisplayMemberBinding="{Binding IsSelected}"/>
 
                 </GridView>
             </ListView.View>

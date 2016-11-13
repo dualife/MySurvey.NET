@@ -7,12 +7,12 @@
 			 xmlns:ignore="http://www.galasoft.ch/ignore"
              StartupUri="Windows/LoginWindow.xaml"
              mc:Ignorable="d ignore">
-    
+
     <Application.Resources>
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
         <!--Converters-->
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Application.Resources>
-    
+
 </Application>

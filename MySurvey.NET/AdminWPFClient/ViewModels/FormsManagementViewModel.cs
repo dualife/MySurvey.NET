@@ -10,6 +10,7 @@ using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace AdminWPFClient.ViewModels
         private RelayCommand createFormCmd = null;
         private RelayCommand archiveFormsCmd = null;
         private RelayCommand deleteFormsCmd = null;
+        private RelayCommand updateFormsSelectedCmd = null;
 
         public FormsManagementViewModel(IUserService userService, IFormsManagementService formsService)
         {
@@ -93,7 +95,7 @@ namespace AdminWPFClient.ViewModels
                     },
                     () =>
                     {
-                        return this.formsList.Any((item) => item.IsSelected);
+                        return this.formsList.Any(item => item.IsSelected);
                     }));
             }
 
@@ -114,13 +116,49 @@ namespace AdminWPFClient.ViewModels
                     },
                     () =>
                     {
-                        return this.formsList.Any((item) => item.IsSelected);
+                        return this.formsList.Any(item => item.IsSelected);
                     }));
             }
 
             set
             {
                 this.Set(ref this.deleteFormsCmd, value);
+            }
+        }
+
+        public RelayCommand UpdateFormsSelectedCmd
+        {
+            get
+            {
+                return this.updateFormsSelectedCmd ?? (this.updateFormsSelectedCmd = new RelayCommand(
+                    () =>
+                    {
+                        this.RaisePropertyChanged(() => this.IsAllFormsSelected);
+                    }));
+            }
+
+            set
+            {
+                this.Set(ref this.updateFormsSelectedCmd, value);
+            }
+        }
+
+        public bool IsAllFormsSelected
+        {
+            get
+            {
+                if (this.formsList.Count == 0)
+                {
+                    return false;
+                }
+
+                return this.formsList.All(form => form.IsSelected);
+            }
+
+            set
+            {
+                this.formsList.ToList().ForEach(form => form.IsSelected = value);
+                this.RaisePropertyChanged();
             }
         }
 
