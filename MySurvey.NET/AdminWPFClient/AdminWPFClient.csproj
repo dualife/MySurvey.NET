@@ -82,6 +82,7 @@
       <DependentUpon>GoToFormUrlIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\SelectableForm.cs" />
     <Compile Include="Services\DataItem.cs" />
@@ -172,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

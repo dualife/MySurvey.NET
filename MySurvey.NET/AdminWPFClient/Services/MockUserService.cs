@@ -5,6 +5,7 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
+using AdminWPFClient.Extensions;
 using System;
 using System.Security;
 
@@ -20,8 +21,17 @@ namespace AdminWPFClient.Services
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
-            this.currentLoggedUserName = userName;
-            return true;
+            // unsecure use of SecureString
+            string pwd = securePassword.GetUnsecureString();
+
+            // mock authentification allowing no password or same than username
+            if (string.IsNullOrEmpty(pwd) || pwd == userName)
+            {
+                this.currentLoggedUserName = userName;
+                return true;
+            }
+
+            return false;
         }
 
         public string GetLoggedUsername()
