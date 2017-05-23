@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -23,6 +24,8 @@ namespace AdminWPFClient.ViewModels
         private ObservableCollection<SelectableForm> formsList = null;
         private string context = string.Empty;
         private RelayCommand<string> loadedCmd = null;
+        private RelayCommand<Form> goToFormUrlCmd = null;
+        private RelayCommand<Form> copyFormUrlCmd = null;
         private RelayCommand createFormCmd = null;
         private RelayCommand archiveFormsCmd = null;
         private RelayCommand deleteFormsCmd = null;
@@ -59,6 +62,34 @@ namespace AdminWPFClient.ViewModels
             set
             {
                 this.Set(ref this.loadedCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> GoToFormUrlCmd
+        {
+            get
+            {
+                return this.goToFormUrlCmd ?? (this.goToFormUrlCmd = new RelayCommand<Form>(
+                    this.GoToFormUrlAction));
+            }
+
+            set
+            {
+                this.Set(ref this.goToFormUrlCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> CopyFormUrlCmd
+        {
+            get
+            {
+                return this.copyFormUrlCmd ?? (this.copyFormUrlCmd = new RelayCommand<Form>(
+                    this.CopyFormUrlAction));
+            }
+
+            set
+            {
+                this.Set(ref this.copyFormUrlCmd, value);
             }
         }
 
@@ -173,6 +204,18 @@ namespace AdminWPFClient.ViewModels
                 case "archiveUc":
                     break;
             }
+        }
+
+        private void GoToFormUrlAction(Form obj)
+        {
+            /// TODO
+            MessageBox.Show("GoToFormUrlAction");
+        }
+
+        private void CopyFormUrlAction(Form obj)
+        {
+            /// TODO
+            MessageBox.Show("CopyFormUrlAction");
         }
     }
 }

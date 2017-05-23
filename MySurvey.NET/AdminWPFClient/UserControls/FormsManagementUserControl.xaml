@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
              d:DesignHeight="100" d:DesignWidth="500"
              x:Name="FormsManagmentUc"
              DataContext="{Binding FormsManagement, Source={StaticResource Locator}}">
@@ -23,11 +24,11 @@
         <DataTemplate x:Key="URLCt">
             <StackPanel Orientation="Horizontal">
 
-                <Button>
+                <Button ToolTip="Accéder à l'URL du formulaire" Command="{Binding FormsManagement.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
                     <assets:GoToFormUrlIcon/>
                 </Button>
 
-                <Button>
+                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding form}">
                     <assets:CopyFormUrlIcon/>
                 </Button>
 
@@ -76,15 +77,15 @@
 
                     <GridViewColumn Header="Liens" CellTemplate="{StaticResource URLCt}"/>
 
-                    <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate}"/>
+                    <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
 
-                    <GridViewColumn Header="Modification" DisplayMemberBinding="{Binding Form.ModificationDate}"/>
+                    <GridViewColumn Header="Modification" DisplayMemberBinding="{Binding Form.ModificationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
 
                     <GridViewColumn Header="Auteur" DisplayMemberBinding="{Binding Form.AuthorName}"/>
 
                     <GridViewColumn Header="Statut" DisplayMemberBinding="{Binding Form.Status}"/>
 
-                    <GridViewColumn Header="Nb réponses" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
+                    <GridViewColumn Header="Nb réponses attendues" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
 
                     <GridViewColumn Header="Actions"/>
 
