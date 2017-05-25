@@ -34,5 +34,7 @@ namespace AdminWPFClient.Services
         bool DeleteMentionsFile();
 
         void Logoff();
+
+        bool SetNewPassword(string oldPassword, string newPassword, ref string errorMessage);
     }
 }

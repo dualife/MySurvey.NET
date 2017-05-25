@@ -96,12 +96,18 @@ namespace AdminWPFClient.Services
 
         public void Logoff()
         {
-            // cleanup instance content. may use a user subclass?
             currentLoggedUserName = string.Empty;
             mentionsText = string.Empty;
             confirmationText = string.Empty;
             clotureText = string.Empty;
             mentionsFile = string.Empty;
+        }
+
+        public bool SetNewPassword(string oldPassword, string newPassword, ref string errorMessage)
+        {
+            errorMessage = "Succès!";
+
+            return true;
         }
     }
 }

@@ -145,12 +145,14 @@ namespace AdminWPFClient.ViewModels
 
         private void EditAccountAction()
         {
-            throw new NotImplementedException();
+            var newWindow = new EditAccountWindow();
+            newWindow.ShowDialog();
         }
 
         private void LogoffAction()
         {
             userService.Logoff();
+            /// TODO: clean the user forms services and all
 
             var currentWindow = App.Current.Windows[0];
             var newWindow = new LoginWindow();

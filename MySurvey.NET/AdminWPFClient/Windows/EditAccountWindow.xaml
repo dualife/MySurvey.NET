@@ -1,0 +1,39 @@
+﻿<Window x:Class="AdminWPFClient.Windows.EditAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminWPFClient.Windows"
+        mc:Ignorable="d"
+        Title="Modifier mon compte" Height="130" Width="300"
+        DataContext="{Binding EditAccount, Source={StaticResource Locator}}">
+    <DockPanel>
+
+        <StackPanel Margin="3"  DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button HorizontalAlignment="Center" Margin="3" Content="Sauvegarder" Command="{Binding SaveCmd}"/>
+            <Button HorizontalAlignment="Center" Margin="3" Content="Quitter" Command="{Binding ExitCmd}"/>
+        </StackPanel>
+
+        <StackPanel Margin="3" DockPanel.Dock="Top">
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!--TODO: handle passwordbox securestring-->
+                <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Ancien mot de passe :"/>
+                <PasswordBox x:Name="OldPasswordBx" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Nouveau mot de passe :"/>
+                <PasswordBox x:Name="NewPasswordBx" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+
+            </Grid>
+        </StackPanel>
+
+    </DockPanel>
+</Window>

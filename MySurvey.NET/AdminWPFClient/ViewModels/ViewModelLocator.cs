@@ -53,6 +53,8 @@ namespace AdminWPFClient.ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<FormsManagementViewModel>();
             SimpleIoc.Default.Register<TextTabViewModel>();
+            SimpleIoc.Default.Register<EditAccountViewModel>();
+
         }
 
         /// <summary>
@@ -90,6 +92,14 @@ namespace AdminWPFClient.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<TextTabViewModel>();
+            }
+        }
+
+        public EditAccountViewModel EditAccount
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditAccountViewModel>();
             }
         }
 
