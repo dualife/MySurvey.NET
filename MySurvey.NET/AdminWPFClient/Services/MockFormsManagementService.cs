@@ -33,7 +33,8 @@ namespace AdminWPFClient.Services
                 ModificationDate = DateTime.Now,
                 NumberOfAnswers = 10,
                 Status = Form.State.InProgress,
-                Title = "newEmptyForm"
+                Title = "newEmptyForm",
+                Url= new Uri("http://i2.kym-cdn.com/entries/icons/facebook/000/001/030/dickbutt.jpg")
             };
 
             this.forms.Add(newForm);

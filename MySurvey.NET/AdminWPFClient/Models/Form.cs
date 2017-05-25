@@ -33,5 +33,7 @@ namespace AdminWPFClient.Models
         public State Status { get; set; }
 
         public int NumberOfAnswers { get; set; }
+
+        public Uri Url { get; set; }
     }
 }

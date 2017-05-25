@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:assets="clr-namespace:AdminWPFClient.Assets"
-             xmlns:local="clr-namespace:AdminWPFClient.UserControls"
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -28,7 +27,7 @@
                     <assets:GoToFormUrlIcon/>
                 </Button>
 
-                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding form}">
+                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
                     <assets:CopyFormUrlIcon/>
                 </Button>
 

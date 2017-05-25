@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 
@@ -206,16 +207,18 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        private void GoToFormUrlAction(Form obj)
+        private void GoToFormUrlAction(Form form)
         {
-            /// TODO
-            MessageBox.Show("GoToFormUrlAction");
+            // reach form URL with default browser
+            Process.Start(form.Url.AbsoluteUri);
         }
 
-        private void CopyFormUrlAction(Form obj)
+        private void CopyFormUrlAction(Form form)
         {
-            /// TODO
-            MessageBox.Show("CopyFormUrlAction");
+            // copy to clipboard form URL
+            Clipboard.SetData(DataFormats.Text, form.Url.AbsoluteUri);
+
+            MessageBox.Show("Copié dans le presse-papier");
         }
     }
 }
