@@ -10,6 +10,7 @@ using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
+using AdminWPFClient.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
@@ -18,8 +19,10 @@ namespace AdminWPFClient.ViewModels
         private readonly IUserService userService;
         private string windowTitleLabel = "Tableau de bord des formulaires";
         private string accountLabel = string.Empty;
-        private RelayCommand helpCmd = null;
         private RelayCommand<string> tabSelectionChangedCmd = null;
+        private RelayCommand helpCmd = null;
+        private RelayCommand editAccountCmd = null;
+        private RelayCommand logoffCmd = null;
 
         public MainViewModel(IUserService userService)
         {
@@ -53,6 +56,21 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
+        public RelayCommand<string> TabSelectionChangedCmd
+        {
+            get
+            {
+                return this.tabSelectionChangedCmd
+                  ?? (this.tabSelectionChangedCmd = new RelayCommand<string>(
+                    this.TabChangedAction));
+            }
+
+            set
+            {
+                this.Set(ref this.tabSelectionChangedCmd, value);
+            }
+        }
+
         public RelayCommand HelpCmd
         {
             get
@@ -71,18 +89,33 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<string> TabSelectionChangedCmd
+        public RelayCommand EditAccountCmd
         {
             get
             {
-                return this.tabSelectionChangedCmd
-                  ?? (this.tabSelectionChangedCmd = new RelayCommand<string>(
-                    this.TabChangedAction));
+                return this.editAccountCmd
+                  ?? (this.editAccountCmd = new RelayCommand(this.EditAccountAction));
             }
 
             set
             {
-                this.Set(ref this.tabSelectionChangedCmd, value);
+                this.Set(ref this.editAccountCmd, value);
+            }
+        }
+
+
+
+        public RelayCommand LogoffCmd
+        {
+            get
+            {
+                return this.logoffCmd
+                  ?? (this.logoffCmd = new RelayCommand(this.LogoffAction));
+            }
+
+            set
+            {
+                this.Set(ref this.logoffCmd, value);
             }
         }
 
@@ -108,6 +141,21 @@ namespace AdminWPFClient.ViewModels
                 default:
                     break;
             }
+        }
+
+        private void EditAccountAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void LogoffAction()
+        {
+            userService.Logoff();
+
+            var currentWindow = App.Current.Windows[0];
+            var newWindow = new LoginWindow();
+            currentWindow.Close();
+            newWindow.Show();
         }
 
         ////public override void Cleanup()

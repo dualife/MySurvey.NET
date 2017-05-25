@@ -93,5 +93,15 @@ namespace AdminWPFClient.Services
             this.mentionsFile = string.Empty;
             return true;
         }
+
+        public void Logoff()
+        {
+            // cleanup instance content. may use a user subclass?
+            currentLoggedUserName = string.Empty;
+            mentionsText = string.Empty;
+            confirmationText = string.Empty;
+            clotureText = string.Empty;
+            mentionsFile = string.Empty;
+        }
     }
 }

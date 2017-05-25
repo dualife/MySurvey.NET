@@ -24,8 +24,16 @@
         <StackPanel DockPanel.Dock="Top">
 
             <Grid Margin="3">
+                
                 <Label Content="{Binding WindowTitleLabel}"/>
-                <Label HorizontalAlignment="Right" Content="{Binding AccountLabel}"/>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                    <Label Content="{Binding AccountLabel}"/>
+                    <Button Margin="3" Content="Mon compte" Command="{Binding EditAccountCmd}"/>
+                    <Button Margin="3" Content="Se déconnecter" Command="{Binding LogoffCmd}"/>
+                    
+                </StackPanel>
+                
             </Grid>
 
             <Button Margin="3" HorizontalAlignment="Left" Content="Aide" Command="{Binding HelpCmd}"/>

@@ -32,5 +32,7 @@ namespace AdminWPFClient.Services
         bool SaveMentionsFile(string filePath);
 
         bool DeleteMentionsFile();
+
+        void Logoff();
     }
 }
