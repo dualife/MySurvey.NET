@@ -6,6 +6,8 @@
 // </copyright>
 
 using System;
+using System.Diagnostics;
+using System.Windows;
 
 namespace AdminWPFClient.Models
 {
@@ -35,5 +37,17 @@ namespace AdminWPFClient.Models
         public int NumberOfAnswers { get; set; }
 
         public Uri Url { get; set; }
+
+        public void GoToUrl()
+        {
+            // reach form URL with default browser
+            Process.Start(this.Url.AbsoluteUri);
+        }
+
+        public void CopyUrlToClipboard()
+        {
+            // copy to clipboard form URL
+            Clipboard.SetData(DataFormats.Text, this.Url.AbsoluteUri);
+        }
     }
 }

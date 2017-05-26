@@ -76,8 +76,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Assets\ArchiveFormIcon.xaml.cs">
+      <DependentUpon>ArchiveFormIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\CopyFormUrlIcon.xaml.cs">
       <DependentUpon>CopyFormUrlIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\DeleteFormIcon.xaml.cs">
+      <DependentUpon>DeleteFormIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\DeployFormIcon.xaml.cs">
+      <DependentUpon>DeployFormIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\DuplicateFormIcon.xaml.cs">
+      <DependentUpon>DuplicateFormIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\EditFormIcon.xaml.cs">
+      <DependentUpon>EditFormIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\EndFormIcon.xaml.cs">
+      <DependentUpon>EndFormIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\GoToFormUrlIcon.xaml.cs">
       <DependentUpon>GoToFormUrlIcon.xaml</DependentUpon>
@@ -111,6 +129,30 @@
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Assets\DeleteFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\ArchiveFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\DuplicateFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\EndFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\DeployFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\EditFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\CopyFormUrlIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

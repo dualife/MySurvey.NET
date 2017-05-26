@@ -8,7 +8,7 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:uc="clr-namespace:AdminWPFClient.UserControls"
-        Width="600" Height="400" Title="MySurvey.NET"
+        Width="860" Height="500" Title="MySurvey.NET"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <Window.Resources>

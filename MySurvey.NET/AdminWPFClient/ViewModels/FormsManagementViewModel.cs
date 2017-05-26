@@ -10,9 +10,7 @@ using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 
@@ -27,6 +25,12 @@ namespace AdminWPFClient.ViewModels
         private RelayCommand<string> loadedCmd = null;
         private RelayCommand<Form> goToFormUrlCmd = null;
         private RelayCommand<Form> copyFormUrlCmd = null;
+        private RelayCommand<Form> editFormCmd = null;
+        private RelayCommand<Form> deployFormCmd = null;
+        private RelayCommand<Form> endFormCmd = null;
+        private RelayCommand<Form> duplicateFormCmd = null;
+        private RelayCommand<Form> archiveFormCmd = null;
+        private RelayCommand<Form> deleteFormCmd = null;
         private RelayCommand createFormCmd = null;
         private RelayCommand archiveFormsCmd = null;
         private RelayCommand deleteFormsCmd = null;
@@ -91,6 +95,91 @@ namespace AdminWPFClient.ViewModels
             set
             {
                 this.Set(ref this.copyFormUrlCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> EditFormCmd
+        {
+            get
+            {
+                return this.editFormCmd ?? (this.editFormCmd = new RelayCommand<Form>(
+                    this.EditFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.editFormCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> DeployFormCmd
+        {
+            get
+            {
+                return this.deployFormCmd ?? (this.deployFormCmd = new RelayCommand<Form>(
+                    this.DeployFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.deployFormCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> EndFormCmd
+        {
+            get
+            {
+                return this.endFormCmd ?? (this.endFormCmd = new RelayCommand<Form>(
+                    this.EndFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.endFormCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> DuplicateFormCmd
+        {
+            get
+            {
+                return this.duplicateFormCmd ?? (this.duplicateFormCmd = new RelayCommand<Form>(
+                    this.DuplicateFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.duplicateFormCmd, value);
+            }
+        }
+
+        public RelayCommand<Form> ArchiveFormCmd
+        {
+            get
+            {
+                return this.archiveFormCmd ?? (this.archiveFormCmd = new RelayCommand<Form>(
+                    this.ArchiveFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.archiveFormCmd, value);
+            }
+        }
+
+
+        public RelayCommand<Form> DeleteFormCmd
+        {
+            get
+            {
+                return this.deleteFormCmd ?? (this.deleteFormCmd = new RelayCommand<Form>(
+                    this.DeleteFormAction));
+            }
+
+            set
+            {
+                this.Set(ref this.deleteFormCmd, value);
             }
         }
 
@@ -209,16 +298,44 @@ namespace AdminWPFClient.ViewModels
 
         private void GoToFormUrlAction(Form form)
         {
-            // reach form URL with default browser
-            Process.Start(form.Url.AbsoluteUri);
+            form.GoToUrl();
         }
 
         private void CopyFormUrlAction(Form form)
         {
-            // copy to clipboard form URL
-            Clipboard.SetData(DataFormats.Text, form.Url.AbsoluteUri);
+            form.CopyUrlToClipboard();
 
             MessageBox.Show("Copié dans le presse-papier");
+        }
+
+        private void EditFormAction(Form obj)
+        {
+            MessageBox.Show("EditFormAction");
+        }
+
+        private void DeployFormAction(Form obj)
+        {
+            MessageBox.Show("DeployFormAction");
+        }
+
+        private void EndFormAction(Form obj)
+        {
+            MessageBox.Show("EndFormAction");
+        }
+
+        private void DuplicateFormAction(Form obj)
+        {
+            MessageBox.Show("DuplicateFormAction");
+        }
+
+        private void ArchiveFormAction(Form obj)
+        {
+            MessageBox.Show("ArchiveFormAction");
+        }
+
+        private void DeleteFormAction(Form obj)
+        {
+            MessageBox.Show("DeleteFormAction");
         }
     }
 }

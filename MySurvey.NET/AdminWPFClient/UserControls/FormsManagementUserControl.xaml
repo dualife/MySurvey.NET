@@ -34,6 +34,36 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate x:Key="ActionCt">
+            <StackPanel Orientation="Horizontal">
+
+                <Button ToolTip="Modifier le formulaire" Command="{Binding FormsManagement.EditFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:EditFormIcon/>
+                </Button>
+
+                <Button ToolTip="Valider le formulaire" Command="{Binding FormsManagement.DeployFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:DeployFormIcon/>
+                </Button>
+
+                <Button ToolTip="Cloturer le formulaire" Command="{Binding FormsManagement.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:EndFormIcon/>
+                </Button>
+
+                <Button ToolTip="Dupliquer le formulaire" Command="{Binding FormsManagement.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:DuplicateFormIcon/>
+                </Button>
+
+                <Button ToolTip="Archiver le formulaire" Command="{Binding FormsManagement.ArchiveFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:ArchiveFormIcon/>
+                </Button>
+
+                <Button ToolTip="Supprimer le formulaire" Command="{Binding FormsManagement.DeleteFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                    <assets:DeleteFormIcon/>
+                </Button>
+
+            </StackPanel>
+        </DataTemplate>
+
     </UserControl.Resources>
 
     <DockPanel>
@@ -86,7 +116,7 @@
 
                     <GridViewColumn Header="Nb réponses attendues" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
 
-                    <GridViewColumn Header="Actions"/>
+                    <GridViewColumn Header="Actions" CellTemplate="{StaticResource ActionCt}"/>
 
                 </GridView>
             </ListView.View>
