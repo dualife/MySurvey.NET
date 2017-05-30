@@ -42,7 +42,7 @@
                 </Button>
 
                 <Button ToolTip="Valider le formulaire" Command="{Binding FormsManagement.DeployFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
-                    <assets:RocketIcon/>
+                    <assets:DeployFormIcon/>
                 </Button>
 
                 <Button ToolTip="Cloturer le formulaire" Command="{Binding FormsManagement.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
