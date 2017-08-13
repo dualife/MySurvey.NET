@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:assets="clr-namespace:AdminWPFClient.Assets"
              mc:Ignorable="d" 
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:assets="clr-namespace:AdminWPFClient.Assets"
              d:DesignHeight="100" d:DesignWidth="500"
              x:Name="FormsManagmentUc"
              DataContext="{Binding FormsManagement, Source={StaticResource Locator}}">

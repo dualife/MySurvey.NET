@@ -76,30 +76,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Assets\ArchiveFormIcon.xaml.cs">
-      <DependentUpon>ArchiveFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\CopyFormUrlIcon.xaml.cs">
-      <DependentUpon>CopyFormUrlIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\DeleteFormIcon.xaml.cs">
-      <DependentUpon>DeleteFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\DeployFormIcon.xaml.cs">
-      <DependentUpon>DeployFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\DuplicateFormIcon.xaml.cs">
-      <DependentUpon>DuplicateFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\EditFormIcon.xaml.cs">
-      <DependentUpon>EditFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\EndFormIcon.xaml.cs">
-      <DependentUpon>EndFormIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\GoToFormUrlIcon.xaml.cs">
-      <DependentUpon>GoToFormUrlIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Design\DesignDataService.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Models\Form.cs" />

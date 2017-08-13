@@ -9,10 +9,16 @@
              mc:Ignorable="d ignore">
 
     <Application.Resources>
-        <!--Global View Model Locator-->
-        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
-        <!--Converters-->
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <ResourceDictionary>
+            
+            <!--Global View Model Locator-->
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+            <!--Converters-->
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        </ResourceDictionary>
+        
     </Application.Resources>
 
 </Application>
