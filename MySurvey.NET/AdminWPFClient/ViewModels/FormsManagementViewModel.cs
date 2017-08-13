@@ -52,7 +52,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.formsList, value);
+                if (value != this.formsList)
+                    this.Set(ref this.formsList, value);
             }
         }
 
@@ -66,7 +67,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.loadedCmd, value);
+                if (value != this.loadedCmd)
+                    this.Set(ref this.loadedCmd, value);
             }
         }
 
@@ -80,7 +82,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.goToFormUrlCmd, value);
+                if (value != this.goToFormUrlCmd)
+                    this.Set(ref this.goToFormUrlCmd, value);
             }
         }
 
@@ -94,7 +97,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.copyFormUrlCmd, value);
+                if (value != this.copyFormUrlCmd)
+                    this.Set(ref this.copyFormUrlCmd, value);
             }
         }
 
@@ -108,7 +112,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.editFormCmd, value);
+                if (value != this.editFormCmd)
+                    this.Set(ref this.editFormCmd, value);
             }
         }
 
@@ -122,7 +127,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.deployFormCmd, value);
+                if (value != this.deployFormCmd)
+                    this.Set(ref this.deployFormCmd, value);
             }
         }
 
@@ -136,7 +142,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.endFormCmd, value);
+                if (value != this.endFormCmd)
+                    this.Set(ref this.endFormCmd, value);
             }
         }
 
@@ -150,7 +157,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.duplicateFormCmd, value);
+                if (value != this.duplicateFormCmd)
+                    this.Set(ref this.duplicateFormCmd, value);
             }
         }
 
@@ -164,7 +172,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.archiveFormCmd, value);
+                if (value != this.archiveFormCmd)
+                    this.Set(ref this.archiveFormCmd, value);
             }
         }
 
@@ -179,7 +188,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.deleteFormCmd, value);
+                if (value != this.deleteFormCmd)
+                    this.Set(ref this.deleteFormCmd, value);
             }
         }
 
@@ -201,7 +211,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.createFormCmd, value);
+                if (value != this.createFormCmd)
+                    this.Set(ref this.createFormCmd, value);
             }
         }
 
@@ -222,7 +233,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.archiveFormsCmd, value);
+                if (value != this.archiveFormsCmd)
+                    this.Set(ref this.archiveFormsCmd, value);
             }
         }
 
@@ -243,7 +255,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.deleteFormsCmd, value);
+                if (value != this.deleteFormsCmd)
+                    this.Set(ref this.deleteFormsCmd, value);
             }
         }
 
@@ -260,7 +273,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.updateFormsSelectedCmd, value);
+                if (value != this.updateFormsSelectedCmd)
+                    this.Set(ref this.updateFormsSelectedCmd, value);
             }
         }
 

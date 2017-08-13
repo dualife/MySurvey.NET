@@ -111,10 +111,10 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\MockFormsManagementService.cs" />
     <Compile Include="Services\MockUserService.cs" />
-    <Compile Include="UserControls\FormsManagementUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\FormsManagementUserControl.xaml.cs">
       <DependentUpon>FormsManagementUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TextTabUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\TextTabUserControl.xaml.cs">
       <DependentUpon>TextTabUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\FormsManagementViewModel.cs" />
@@ -123,10 +123,10 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TextTabViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Windows\EditAccountWindow.xaml.cs">
+    <Compile Include="Views\Windows\EditAccountWindow.xaml.cs">
       <DependentUpon>EditAccountWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\LoginWindow.xaml.cs">
+    <Compile Include="Views\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\DeleteFormIcon.xaml">
@@ -161,19 +161,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\FormsManagementUserControl.xaml">
+    <Page Include="Views\UserControls\FormsManagementUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TextTabUserControl.xaml">
+    <Page Include="Views\UserControls\TextTabUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditAccountWindow.xaml">
+    <Page Include="Views\Windows\EditAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -181,15 +181,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Skins\MainSkin.xaml">
+    <Page Include="Views\Skins\MainSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\LoginWindow.xaml">
+    <Page Include="Views\Windows\LoginWindow.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

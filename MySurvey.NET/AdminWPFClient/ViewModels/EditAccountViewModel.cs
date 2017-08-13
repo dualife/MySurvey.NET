@@ -37,7 +37,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.loginField, value);
+                if (value != this.loginField)
+                    this.Set(ref this.loginField, value);
             }
         }
 
@@ -50,7 +51,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.saveCmd, value);
+                if (value != this.saveCmd)
+                    this.Set(ref this.saveCmd, value);
             }
         }
 
@@ -63,7 +65,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.exitCmd, value);
+                if (value != this.exitCmd)
+                    this.Set(ref this.exitCmd, value);
             }
         }
 

@@ -43,7 +43,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.tabTitleLabel, value);
+                if (value != this.tabTitleLabel)
+                    this.Set(ref this.tabTitleLabel, value);
             }
         }
 
@@ -56,7 +57,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.fileUploadLabel, value);
+                if (value != this.fileUploadLabel)
+                    this.Set(ref this.fileUploadLabel, value);
             }
         }
 
@@ -69,7 +71,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.textContent, value);
+                if (value != this.textContent)
+                    this.Set(ref this.textContent, value);
             }
         }
 
@@ -82,7 +85,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.showUploadBar, value);
+                if (value != this.showUploadBar)
+                    this.Set(ref this.showUploadBar, value);
             }
         }
 
@@ -96,7 +100,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.loadedCmd, value);
+                if (value != this.loadedCmd)
+                    this.Set(ref this.loadedCmd, value);
             }
         }
 
@@ -134,7 +139,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.saveCmd, value);
+                if (value != this.saveCmd)
+                    this.Set(ref this.saveCmd, value);
             }
         }
 
@@ -165,7 +171,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.deleteFileCmd, value);
+                if (value != this.deleteFileCmd)
+                    this.Set(ref this.deleteFileCmd, value);
             }
         }
 
@@ -193,7 +200,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.loadFileCmd, value);
+                if (value != this.loadFileCmd)
+                    this.Set(ref this.loadFileCmd, value);
             }
         }
 
@@ -206,7 +214,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.filePath, value);
+                if (value != this.filePath)
+                    this.Set(ref this.filePath, value);
             }
         }
 

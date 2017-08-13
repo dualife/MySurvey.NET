@@ -39,7 +39,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.windowTitleLabel, value);
+                if (value != this.windowTitleLabel)
+                    this.Set(ref this.windowTitleLabel, value);
             }
         }
 
@@ -52,7 +53,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.accountLabel, value);
+                if (value != this.accountLabel)
+                    this.Set(ref this.accountLabel, value);
             }
         }
 
@@ -67,7 +69,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.tabSelectionChangedCmd, value);
+                if (value != this.tabSelectionChangedCmd)
+                    this.Set(ref this.tabSelectionChangedCmd, value);
             }
         }
 
@@ -85,7 +88,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.helpCmd, value);
+                if (value != this.helpCmd)
+                    this.Set(ref this.helpCmd, value);
             }
         }
 
@@ -99,7 +103,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.editAccountCmd, value);
+                if (value != this.editAccountCmd)
+                    this.Set(ref this.editAccountCmd, value);
             }
         }
 
@@ -115,7 +120,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                this.Set(ref this.logoffCmd, value);
+                if (value != this.logoffCmd)
+                    this.Set(ref this.logoffCmd, value);
             }
         }
 
