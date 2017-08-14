@@ -184,11 +184,14 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         // loadBtn
-                        var openFileDialog = new OpenFileDialog();
-                        openFileDialog.ValidateNames = true;
-                        openFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                        openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                        openFileDialog.Multiselect = false;
+                        var openFileDialog = new OpenFileDialog()
+                        {
+                            ValidateNames = true,
+                            Filter = "PDF files (*.pdf)|*.pdf",
+                            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                            Multiselect = false
+                        };
+
                         if (openFileDialog.ShowDialog() == true)
                         {
                             this.FilePath = openFileDialog.FileName;
