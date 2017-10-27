@@ -32,7 +32,7 @@
 
             </Grid>
 
-            <Button HorizontalAlignment="Center" Margin="3" Content="Connecter"
+            <Button x:Name="connectBtn" HorizontalAlignment="Center" Margin="3" Content="Connecter"
                     Command="{Binding ConnectCmd}" CommandParameter="{Binding SecurePassword, ElementName=PasswordBx}"/>
 
         </StackPanel>

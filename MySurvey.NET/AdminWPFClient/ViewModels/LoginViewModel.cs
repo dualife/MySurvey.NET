@@ -46,6 +46,8 @@ namespace AdminWPFClient.ViewModels
                 return this.connectCmd ?? new RelayCommand<SecureString>(
                     securePassword =>
                     {
+                        var val = this.PasswordHash;
+
                         /// TODO securepassword always empty...
                         if (!this.userService.Authenticate(this.LoginField, securePassword))
                         {
@@ -66,5 +68,7 @@ namespace AdminWPFClient.ViewModels
                     this.Set(ref this.connectCmd, value);
             }
         }
+
+        public SecureString PasswordHash { get; internal set; }
     }
 }
