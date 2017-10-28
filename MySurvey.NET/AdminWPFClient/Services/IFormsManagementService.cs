@@ -12,5 +12,7 @@ namespace AdminWPFClient.Services
     public interface IFormsManagementService
     {
         Form CreateForm(IUserService userService);
+
+        bool DeleteForm(Form form);
     }
 }

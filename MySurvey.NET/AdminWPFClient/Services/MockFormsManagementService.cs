@@ -41,6 +41,11 @@ namespace AdminWPFClient.Services
             return newForm;
         }
 
+        public bool DeleteForm(Form form)
+        {
+            return this.forms.Remove(form);
+        }
+
         private int GetNewId()
         {
             return this.forms.Count + 1;

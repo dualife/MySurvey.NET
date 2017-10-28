@@ -23,14 +23,14 @@ namespace AdminWPFClient.ViewModels
         private ObservableCollection<SelectableForm> formsList = null;
         private string context = string.Empty;
         private RelayCommand<string> loadedCmd = null;
-        private RelayCommand<Form> goToFormUrlCmd = null;
-        private RelayCommand<Form> copyFormUrlCmd = null;
-        private RelayCommand<Form> editFormCmd = null;
-        private RelayCommand<Form> deployFormCmd = null;
-        private RelayCommand<Form> endFormCmd = null;
-        private RelayCommand<Form> duplicateFormCmd = null;
-        private RelayCommand<Form> archiveFormCmd = null;
-        private RelayCommand<Form> deleteFormCmd = null;
+        private RelayCommand<SelectableForm> goToFormUrlCmd = null;
+        private RelayCommand<SelectableForm> copyFormUrlCmd = null;
+        private RelayCommand<SelectableForm> editFormCmd = null;
+        private RelayCommand<SelectableForm> deployFormCmd = null;
+        private RelayCommand<SelectableForm> endFormCmd = null;
+        private RelayCommand<SelectableForm> duplicateFormCmd = null;
+        private RelayCommand<SelectableForm> archiveFormCmd = null;
+        private RelayCommand<SelectableForm> deleteFormCmd = null;
         private RelayCommand createFormCmd = null;
         private RelayCommand archiveFormsCmd = null;
         private RelayCommand deleteFormsCmd = null;
@@ -72,11 +72,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> GoToFormUrlCmd
+        public RelayCommand<SelectableForm> GoToFormUrlCmd
         {
             get
             {
-                return this.goToFormUrlCmd ?? (this.goToFormUrlCmd = new RelayCommand<Form>(
+                return this.goToFormUrlCmd ?? (this.goToFormUrlCmd = new RelayCommand<SelectableForm>(
                     this.GoToFormUrlAction));
             }
 
@@ -87,11 +87,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> CopyFormUrlCmd
+        public RelayCommand<SelectableForm> CopyFormUrlCmd
         {
             get
             {
-                return this.copyFormUrlCmd ?? (this.copyFormUrlCmd = new RelayCommand<Form>(
+                return this.copyFormUrlCmd ?? (this.copyFormUrlCmd = new RelayCommand<SelectableForm>(
                     this.CopyFormUrlAction));
             }
 
@@ -102,11 +102,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> EditFormCmd
+        public RelayCommand<SelectableForm> EditFormCmd
         {
             get
             {
-                return this.editFormCmd ?? (this.editFormCmd = new RelayCommand<Form>(
+                return this.editFormCmd ?? (this.editFormCmd = new RelayCommand<SelectableForm>(
                     this.EditFormAction));
             }
 
@@ -117,11 +117,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> DeployFormCmd
+        public RelayCommand<SelectableForm> DeployFormCmd
         {
             get
             {
-                return this.deployFormCmd ?? (this.deployFormCmd = new RelayCommand<Form>(
+                return this.deployFormCmd ?? (this.deployFormCmd = new RelayCommand<SelectableForm>(
                     this.DeployFormAction));
             }
 
@@ -132,11 +132,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> EndFormCmd
+        public RelayCommand<SelectableForm> EndFormCmd
         {
             get
             {
-                return this.endFormCmd ?? (this.endFormCmd = new RelayCommand<Form>(
+                return this.endFormCmd ?? (this.endFormCmd = new RelayCommand<SelectableForm>(
                     this.EndFormAction));
             }
 
@@ -147,11 +147,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> DuplicateFormCmd
+        public RelayCommand<SelectableForm> DuplicateFormCmd
         {
             get
             {
-                return this.duplicateFormCmd ?? (this.duplicateFormCmd = new RelayCommand<Form>(
+                return this.duplicateFormCmd ?? (this.duplicateFormCmd = new RelayCommand<SelectableForm>(
                     this.DuplicateFormAction));
             }
 
@@ -162,11 +162,11 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<Form> ArchiveFormCmd
+        public RelayCommand<SelectableForm> ArchiveFormCmd
         {
             get
             {
-                return this.archiveFormCmd ?? (this.archiveFormCmd = new RelayCommand<Form>(
+                return this.archiveFormCmd ?? (this.archiveFormCmd = new RelayCommand<SelectableForm>(
                     this.ArchiveFormAction));
             }
 
@@ -178,11 +178,11 @@ namespace AdminWPFClient.ViewModels
         }
 
 
-        public RelayCommand<Form> DeleteFormCmd
+        public RelayCommand<SelectableForm> DeleteFormCmd
         {
             get
             {
-                return this.deleteFormCmd ?? (this.deleteFormCmd = new RelayCommand<Form>(
+                return this.deleteFormCmd ?? (this.deleteFormCmd = new RelayCommand<SelectableForm>(
                     this.DeleteFormAction));
             }
 
@@ -310,46 +310,47 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        private void GoToFormUrlAction(Form form)
+        private void GoToFormUrlAction(SelectableForm selectedForm)
         {
-            form.GoToUrl();
+            selectedForm.Form.GoToUrl();
         }
 
-        private void CopyFormUrlAction(Form form)
+        private void CopyFormUrlAction(SelectableForm selectedForm)
         {
-            form.CopyUrlToClipboard();
+            selectedForm.Form.CopyUrlToClipboard();
 
             MessageBox.Show("Copié dans le presse-papier");
         }
 
-        private void EditFormAction(Form obj)
+        private void EditFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("EditFormAction");
         }
 
-        private void DeployFormAction(Form obj)
+        private void DeployFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("DeployFormAction");
         }
 
-        private void EndFormAction(Form obj)
+        private void EndFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("EndFormAction");
         }
 
-        private void DuplicateFormAction(Form obj)
+        private void DuplicateFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("DuplicateFormAction");
         }
 
-        private void ArchiveFormAction(Form obj)
+        private void ArchiveFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("ArchiveFormAction");
         }
 
-        private void DeleteFormAction(Form obj)
+        private void DeleteFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("DeleteFormAction");
+            this.FormsList.Remove(selectedForm);
+            this.formsService.DeleteForm(selectedForm.Form);
         }
     }
 }

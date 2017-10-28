@@ -23,11 +23,11 @@
         <DataTemplate x:Key="URLCt">
             <StackPanel Orientation="Horizontal">
 
-                <Button ToolTip="Accéder à l'URL du formulaire" Command="{Binding FormsManagement.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Accéder à l'URL du formulaire" Command="{Binding FormsManagement.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:GoToFormUrlIcon/>
                 </Button>
 
-                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:CopyFormUrlIcon/>
                 </Button>
 
@@ -37,27 +37,27 @@
         <DataTemplate x:Key="ActionCt">
             <StackPanel Orientation="Horizontal">
 
-                <Button ToolTip="Modifier le formulaire" Command="{Binding FormsManagement.EditFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Modifier le formulaire" Command="{Binding FormsManagement.EditFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:EditFormIcon/>
                 </Button>
 
-                <Button ToolTip="Valider le formulaire" Command="{Binding FormsManagement.DeployFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Valider le formulaire" Command="{Binding FormsManagement.DeployFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DeployFormIcon/>
                 </Button>
 
-                <Button ToolTip="Cloturer le formulaire" Command="{Binding FormsManagement.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Cloturer le formulaire" Command="{Binding FormsManagement.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:EndFormIcon/>
                 </Button>
 
-                <Button ToolTip="Dupliquer le formulaire" Command="{Binding FormsManagement.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Dupliquer le formulaire" Command="{Binding FormsManagement.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DuplicateFormIcon/>
                 </Button>
 
-                <Button ToolTip="Archiver le formulaire" Command="{Binding FormsManagement.ArchiveFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Archiver le formulaire" Command="{Binding FormsManagement.ArchiveFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:ArchiveFormIcon/>
                 </Button>
 
-                <Button ToolTip="Supprimer le formulaire" Command="{Binding FormsManagement.DeleteFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding Form}">
+                <Button ToolTip="Supprimer le formulaire" Command="{Binding FormsManagement.DeleteFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DeleteFormIcon/>
                 </Button>
 
