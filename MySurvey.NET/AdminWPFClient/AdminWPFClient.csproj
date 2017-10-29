@@ -111,6 +111,7 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\MockFormsManagementService.cs" />
     <Compile Include="Services\MockUserService.cs" />
+    <Compile Include="Utils\ItemsChangeObservableCollection.cs" />
     <Compile Include="Views\UserControls\FormsManagementUserControl.xaml.cs">
       <DependentUpon>FormsManagementUserControl.xaml</DependentUpon>
     </Compile>
@@ -224,7 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

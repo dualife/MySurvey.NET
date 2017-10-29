@@ -7,10 +7,10 @@
 
 using AdminWPFClient.Models;
 using AdminWPFClient.Services;
+using AdminWPFClient.Utils;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
@@ -20,7 +20,7 @@ namespace AdminWPFClient.ViewModels
     {
         private IFormsManagementService formsService = null;
         private IUserService userService = null;
-        private ObservableCollection<SelectableForm> formsList = null;
+        private ItemsChangeObservableCollection<SelectableForm> formsList = null;
         private string context = string.Empty;
         private RelayCommand<string> loadedCmd = null;
         private RelayCommand<SelectableForm> goToFormUrlCmd = null;
@@ -40,10 +40,11 @@ namespace AdminWPFClient.ViewModels
         {
             this.userService = userService;
             this.formsService = formsService;
-            this.formsList = new ObservableCollection<SelectableForm>();
+            this.formsList = new ItemsChangeObservableCollection<SelectableForm>();
+            this.formsList.CollectionChanged += FormsList_CollectionChanged;
         }
 
-        public ObservableCollection<SelectableForm> FormsList
+        public ItemsChangeObservableCollection<SelectableForm> FormsList
         {
             get
             {
@@ -245,7 +246,13 @@ namespace AdminWPFClient.ViewModels
                 return this.deleteFormsCmd ?? (this.deleteFormsCmd = new RelayCommand(
                     () =>
                     {
-                        throw new NotImplementedException();
+                        for (int i = this.formsList.Count - 1; i >= 0; i--)
+                        {
+                            if (this.formsList[i].IsSelected)
+                            {
+                                this.DeleteFormAction(this.formsList[i]);
+                            }
+                        }
                     },
                     () =>
                     {
@@ -295,6 +302,14 @@ namespace AdminWPFClient.ViewModels
                 this.formsList.ToList().ForEach(form => form.IsSelected = value);
                 this.RaisePropertyChanged();
             }
+        }
+
+        private void FormsList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (this.archiveFormsCmd != null)
+                this.archiveFormsCmd.RaiseCanExecuteChanged();
+            if (this.deleteFormsCmd != null)
+                this.deleteFormsCmd.RaiseCanExecuteChanged();
         }
 
         private void LoadedAction(string uclName)
