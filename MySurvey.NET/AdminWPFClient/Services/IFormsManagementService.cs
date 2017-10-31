@@ -6,6 +6,8 @@
 // </copyright>
 
 using AdminWPFClient.Models;
+using AdminWPFClient.Utils;
+using System.Collections.Generic;
 
 namespace AdminWPFClient.Services
 {
@@ -14,5 +16,9 @@ namespace AdminWPFClient.Services
         Form CreateForm(IUserService userService);
 
         bool DeleteForm(Form form);
+
+        IEnumerable<Form> GetCurrentFormsList();
+
+        IEnumerable<Form> GetArchivedFormsList();
     }
 }

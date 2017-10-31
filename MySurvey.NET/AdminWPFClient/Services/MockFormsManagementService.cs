@@ -8,8 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Services
@@ -44,6 +42,16 @@ namespace AdminWPFClient.Services
         public bool DeleteForm(Form form)
         {
             return this.forms.Remove(form);
+        }
+
+        public IEnumerable<Form> GetCurrentFormsList()
+        {
+            return this.forms.Where(element => element.Status != Form.State.Archived && element.Status != Form.State.Closed);
+        }
+
+        public IEnumerable<Form> GetArchivedFormsList()
+        {
+            return this.forms.Where(element => element.Status == Form.State.Archived);
         }
 
         private int GetNewId()

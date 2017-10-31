@@ -40,8 +40,6 @@ namespace AdminWPFClient.ViewModels
         {
             this.userService = userService;
             this.formsService = formsService;
-            this.formsList = new ItemsChangeObservableCollection<SelectableForm>();
-            this.formsList.CollectionChanged += FormsList_CollectionChanged;
         }
 
         public ItemsChangeObservableCollection<SelectableForm> FormsList
@@ -202,11 +200,7 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         var newForm = this.formsService.CreateForm(userService);
-                        this.FormsList.Add(new SelectableForm()
-                        {
-                            IsSelected = false,
-                            Form = newForm
-                        });
+                        this.FormsList?.Add(new SelectableForm(newForm));
                     }));
             }
 
@@ -228,7 +222,7 @@ namespace AdminWPFClient.ViewModels
                     },
                     () =>
                     {
-                        return this.formsList.Any(item => item.IsSelected);
+                        return this.formsList?.Any(item => item.IsSelected) ?? false;
                     }));
             }
 
@@ -256,7 +250,7 @@ namespace AdminWPFClient.ViewModels
                     },
                     () =>
                     {
-                        return this.formsList.Any(item => item.IsSelected);
+                        return this.formsList?.Any(item => item.IsSelected) ?? false;
                     }));
             }
 
@@ -289,7 +283,7 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                if (this.formsList.Count == 0)
+                if (this.formsList == null || this.formsList.Count == 0)
                 {
                     return false;
                 }
@@ -319,10 +313,16 @@ namespace AdminWPFClient.ViewModels
             switch (this.context)
             {
                 case "acceuilUc":
+                    this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
+                        this.formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
                     break;
                 case "archiveUc":
+                    this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
+                        this.formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
                     break;
             }
+
+            this.formsList.CollectionChanged += FormsList_CollectionChanged;
         }
 
         private void GoToFormUrlAction(SelectableForm selectedForm)

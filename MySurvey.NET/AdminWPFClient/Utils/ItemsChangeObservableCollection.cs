@@ -6,9 +6,12 @@
 // </copyright>
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
+using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Utils
 {
@@ -21,6 +24,10 @@ namespace AdminWPFClient.Utils
     public class ItemsChangeObservableCollection<T> :
             ObservableCollection<T> where T : INotifyPropertyChanged
     {
+        public ItemsChangeObservableCollection(IEnumerable<T> items)
+            : base(items)
+        { }
+
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)

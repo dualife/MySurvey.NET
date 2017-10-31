@@ -14,6 +14,12 @@ namespace AdminWPFClient.Models
         private bool isSelected;
         private Form form;
 
+        public SelectableForm(Form item)
+        {
+            this.form = item;
+            this.isSelected = false;
+        }
+
         public bool IsSelected
         {
             get
