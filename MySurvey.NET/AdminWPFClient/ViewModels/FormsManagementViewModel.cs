@@ -222,7 +222,7 @@ namespace AdminWPFClient.ViewModels
                     },
                     () =>
                     {
-                        return this.formsList?.Any(item => item.IsSelected) ?? false;
+                        return this.FormsList?.Any(item => item.IsSelected) ?? false;
                     }));
             }
 
@@ -240,17 +240,17 @@ namespace AdminWPFClient.ViewModels
                 return this.deleteFormsCmd ?? (this.deleteFormsCmd = new RelayCommand(
                     () =>
                     {
-                        for (int i = this.formsList.Count - 1; i >= 0; i--)
+                        for (int i = this.FormsList.Count - 1; i >= 0; i--)
                         {
-                            if (this.formsList[i].IsSelected)
+                            if (this.FormsList[i].IsSelected)
                             {
-                                this.DeleteFormAction(this.formsList[i]);
+                                this.DeleteFormAction(this.FormsList[i]);
                             }
                         }
                     },
                     () =>
                     {
-                        return this.formsList?.Any(item => item.IsSelected) ?? false;
+                        return this.FormsList?.Any(item => item.IsSelected) ?? false;
                     }));
             }
 
@@ -283,17 +283,12 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                if (this.formsList == null || this.formsList.Count == 0)
-                {
-                    return false;
-                }
-
-                return this.formsList.All(form => form.IsSelected);
+                return this.FormsList?.All(form => form.IsSelected) ?? false;
             }
 
             set
             {
-                this.formsList.ToList().ForEach(form => form.IsSelected = value);
+                this.FormsList?.ToList().ForEach(form => form.IsSelected = value);
                 this.RaisePropertyChanged();
             }
         }
@@ -322,7 +317,7 @@ namespace AdminWPFClient.ViewModels
                     break;
             }
 
-            this.formsList.CollectionChanged += FormsList_CollectionChanged;
+            this.FormsList.CollectionChanged += FormsList_CollectionChanged;
         }
 
         private void GoToFormUrlAction(SelectableForm selectedForm)
@@ -364,7 +359,7 @@ namespace AdminWPFClient.ViewModels
 
         private void DeleteFormAction(SelectableForm selectedForm)
         {
-            this.FormsList.Remove(selectedForm);
+            this.FormsList?.Remove(selectedForm);
             this.formsService.DeleteForm(selectedForm.Form);
         }
     }
