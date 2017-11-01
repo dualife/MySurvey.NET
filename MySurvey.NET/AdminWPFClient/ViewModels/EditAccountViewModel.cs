@@ -9,72 +9,62 @@ using AdminWPFClient.Services;
 using AdminWPFClient.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Security;
-using System.Windows;
 using System;
 using System.Linq;
+using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
     public class EditAccountViewModel : ViewModelBase
     {
-        private IUserService userService = null;
-        private string loginField = "admin";
-        private RelayCommand saveCmd = null;
-        private RelayCommand exitCmd = null;
+        private readonly IUserService _userService = null;
+        private string _loginField = "admin";
+        private RelayCommand _saveCmd = null;
+        private RelayCommand _exitCmd = null;
 
         public EditAccountViewModel(IUserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
         }
 
         public string LoginField
         {
-            get
-            {
-                return this.loginField;
-            }
+            get => this._loginField;
 
             set
             {
-                if (value != this.loginField)
-                    this.Set(ref this.loginField, value);
+                if (value != this._loginField)
+                    this.Set(ref this._loginField, value);
             }
         }
 
         public RelayCommand SaveCmd
         {
-            get
-            {
-                return this.saveCmd ?? new RelayCommand(this.SaveAction);
-            }
+            get => this._saveCmd ?? new RelayCommand(this.SaveAction);
 
             set
             {
-                if (value != this.saveCmd)
-                    this.Set(ref this.saveCmd, value);
+                if (value != this._saveCmd)
+                    this.Set(ref this._saveCmd, value);
             }
         }
 
         public RelayCommand ExitCmd
         {
-            get
-            {
-                return this.exitCmd ?? new RelayCommand(this.ExitAction);
-            }
+            get => this._exitCmd ?? new RelayCommand(ExitAction);
 
             set
             {
-                if (value != this.exitCmd)
-                    this.Set(ref this.exitCmd, value);
+                if (value != this._exitCmd)
+                    this.Set(ref this._exitCmd, value);
             }
         }
 
         private void SaveAction()
         {
-            string errorMessage = string.Empty;
+            var errorMessage = string.Empty;
 
-            if (this.userService.SetNewPassword("oldPwd", "newwPwd", ref errorMessage))
+            if (this._userService.SetNewPassword("oldPwd", "newwPwd", ref errorMessage))
             {
                 MessageBox.Show("Sauvegardé !");
             }
@@ -86,9 +76,9 @@ namespace AdminWPFClient.ViewModels
 
         }
 
-        private void ExitAction()
+        private static void ExitAction()
         {
-            EditAccountWindow currentWindow = App.Current.Windows.OfType<EditAccountWindow>().Single();
+            var currentWindow = Application.Current.Windows.OfType<EditAccountWindow>().Single();
             currentWindow.Close();
         }
     }

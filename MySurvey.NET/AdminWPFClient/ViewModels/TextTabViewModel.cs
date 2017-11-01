@@ -17,91 +17,76 @@ namespace AdminWPFClient.ViewModels
 {
     public class TextTabViewModel : ViewModelBase
     {
-        private IUserService userService = null;
-        private string context = string.Empty;
-        private string tabTitleLabel = string.Empty;
-        private string fileUploadLabel = string.Empty;
-        private string textContent = string.Empty;
-        private bool showUploadBar = false;
-        private string filePath = string.Empty;
-        private RelayCommand<string> loadedCmd = null;
-        private RelayCommand saveCmd = null;
-        private RelayCommand deleteFileCmd = null;
-        private RelayCommand loadFileCmd = null;
+        private readonly IUserService _userService = null;
+        private string _context = string.Empty;
+        private string _tabTitleLabel = string.Empty;
+        private string _fileUploadLabel = string.Empty;
+        private string _textContent = string.Empty;
+        private bool _showUploadBar = false;
+        private string _filePath = string.Empty;
+        private RelayCommand<string> _loadedCmd = null;
+        private RelayCommand _saveCmd = null;
+        private RelayCommand _deleteFileCmd = null;
+        private RelayCommand _loadFileCmd = null;
 
         public TextTabViewModel(IUserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
         }
 
         public string TabTitleLabel
         {
-            get
-            {
-                return this.tabTitleLabel;
-            }
+            get => this._tabTitleLabel;
 
             set
             {
-                if (value != this.tabTitleLabel)
-                    this.Set(ref this.tabTitleLabel, value);
+                if (value != this._tabTitleLabel)
+                    this.Set(ref this._tabTitleLabel, value);
             }
         }
 
         public string FileUploadLabel
         {
-            get
-            {
-                return this.fileUploadLabel;
-            }
+            get => this._fileUploadLabel;
 
             set
             {
-                if (value != this.fileUploadLabel)
-                    this.Set(ref this.fileUploadLabel, value);
+                if (value != this._fileUploadLabel)
+                    this.Set(ref this._fileUploadLabel, value);
             }
         }
 
         public string TextContent
         {
-            get
-            {
-                return this.textContent;
-            }
+            get => this._textContent;
 
             set
             {
-                if (value != this.textContent)
-                    this.Set(ref this.textContent, value);
+                if (value != this._textContent)
+                    this.Set(ref this._textContent, value);
             }
         }
 
         public bool ShowUploadBar
         {
-            get
-            {
-                return this.showUploadBar;
-            }
+            get => this._showUploadBar;
 
             set
             {
-                if (value != this.showUploadBar)
-                    this.Set(ref this.showUploadBar, value);
+                if (value != this._showUploadBar)
+                    this.Set(ref this._showUploadBar, value);
             }
         }
 
         public RelayCommand<string> LoadedCmd
         {
-            get
-            {
-                return this.loadedCmd ?? (this.loadedCmd = new RelayCommand<string>(
-                    this.LoadedAction));
-            }
+            get => this._loadedCmd ?? (this._loadedCmd = new RelayCommand<string>(
+                       this.LoadedAction));
 
             set
             {
-                if (value != this.loadedCmd)
-                    this.Set(ref this.loadedCmd, value);
+                if (value != this._loadedCmd)
+                    this.Set(ref this._loadedCmd, value);
             }
         }
 
@@ -109,26 +94,26 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.saveCmd ?? (this.saveCmd = new RelayCommand(
+                return this._saveCmd ?? (this._saveCmd = new RelayCommand(
                     () =>
                     {
                         // saveBtn
-                        switch (this.context)
+                        switch (this._context)
                         {
                             case "mentionUc":
-                                this.userService.SetMentionsText(this.TextContent);
+                                this._userService.SetMentionsText(this.TextContent);
                                 break;
                             case "confirmationUc":
-                                this.userService.SetConfirmationText(this.TextContent);
+                                this._userService.SetConfirmationText(this.TextContent);
                                 break;
                             case "clotureUc":
-                                this.userService.SetClotureText(this.TextContent);
+                                this._userService.SetClotureText(this.TextContent);
                                 break;
                         }
 
                         if (!string.IsNullOrWhiteSpace(this.FilePath))
                         {
-                            this.userService.SaveMentionsFile(this.FilePath);
+                            this._userService.SaveMentionsFile(this.FilePath);
                             this.FileUploadLabel = "Fichier chargé : " + Path.GetFileName(this.FilePath);
                             this.DeleteFileCmd.RaiseCanExecuteChanged();
                         }
@@ -139,8 +124,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.saveCmd)
-                    this.Set(ref this.saveCmd, value);
+                if (value != this._saveCmd)
+                    this.Set(ref this._saveCmd, value);
             }
         }
 
@@ -148,31 +133,23 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.deleteFileCmd ?? (this.deleteFileCmd = new RelayCommand(
+                return this._deleteFileCmd ?? (this._deleteFileCmd = new RelayCommand(
                     () =>
                     {
                         // deleteBtn
-                        this.userService.DeleteMentionsFile();
+                        this._userService.DeleteMentionsFile();
                         this.FileUploadLabel = "Fichié chargé : Aucun.";
                         this.FilePath = string.Empty;
                         this.DeleteFileCmd.RaiseCanExecuteChanged();
                     },
-                    () =>
-                    {
-                        // CanExecute
-                        if (string.IsNullOrWhiteSpace(this.userService.GetMentionsFile()))
-                        {
-                            return false;
-                        }
-
-                        return true;
-                    }));
+                    () => !string.IsNullOrWhiteSpace(this._userService.GetMentionsFile())
+                    ));
             }
 
             set
             {
-                if (value != this.deleteFileCmd)
-                    this.Set(ref this.deleteFileCmd, value);
+                if (value != this._deleteFileCmd)
+                    this.Set(ref this._deleteFileCmd, value);
             }
         }
 
@@ -180,7 +157,7 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.loadFileCmd ?? (this.loadFileCmd = new RelayCommand(
+                return this._loadFileCmd ?? (this._loadFileCmd = new RelayCommand(
                     () =>
                     {
                         // loadBtn
@@ -203,37 +180,34 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.loadFileCmd)
-                    this.Set(ref this.loadFileCmd, value);
+                if (value != this._loadFileCmd)
+                    this.Set(ref this._loadFileCmd, value);
             }
         }
 
         private string FilePath
         {
-            get
-            {
-                return this.filePath;
-            }
+            get => this._filePath;
 
             set
             {
-                if (value != this.filePath)
-                    this.Set(ref this.filePath, value);
+                if (value != this._filePath)
+                    this.Set(ref this._filePath, value);
             }
         }
 
         private void LoadedAction(string uclName)
         {
             // OnLoad
-            this.context = uclName;
+            this._context = uclName;
             this.ShowUploadBar = false;
-            switch (this.context)
+            switch (this._context)
             {
                 case "mentionUc":
                     this.TabTitleLabel = "Mentions légales appliquées à chaque formulaire";
                     this.ShowUploadBar = true;
-                    this.TextContent = this.userService.GetMentionsText();
-                    this.FilePath = this.userService.GetMentionsFile();
+                    this.TextContent = this._userService.GetMentionsText();
+                    this.FilePath = this._userService.GetMentionsFile();
                     if (string.IsNullOrWhiteSpace(this.FilePath))
                     {
                         this.FileUploadLabel = "Fichier chargé : Aucun.";
@@ -247,11 +221,11 @@ namespace AdminWPFClient.ViewModels
                     break;
                 case "confirmationUc":
                     this.TabTitleLabel = "Message de confirmation appliqué à chaque formulaire";
-                    this.TextContent = this.userService.GetConfirmationText();
+                    this.TextContent = this._userService.GetConfirmationText();
                     break;
                 case "clotureUc":
                     this.TabTitleLabel = "Message affiché une fois que le formulaire est clôturé.";
-                    this.TextContent = this.userService.GetClotureText();
+                    this.TextContent = this._userService.GetClotureText();
                     break;
             }
         }

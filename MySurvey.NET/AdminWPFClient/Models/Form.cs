@@ -22,7 +22,7 @@ namespace AdminWPFClient.Models
             Archived = 4
         }
 
-        public int Id { get; set; }
+        public int Id { get; }
 
         public string Title { get; set; }
 
@@ -38,6 +38,24 @@ namespace AdminWPFClient.Models
 
         public Uri Url { get; set; }
 
+        public Form(int id)
+        {
+            this.Id = id;
+        }
+
+        public Form(int id, Form original)
+        {
+            this.Id = id;
+            this.Title = original.Title + " Copy";
+            this.CreationDate = DateTime.Now;
+            this.ModificationDate = DateTime.Now;
+            this.AuthorName = original.AuthorName;
+            this.Status = original.Status;
+            this.NumberOfAnswers = original.NumberOfAnswers;
+            // temporary
+            this.Url = original.Url;
+        }
+
         public void GoToUrl()
         {
             // reach form URL with default browser
@@ -48,6 +66,13 @@ namespace AdminWPFClient.Models
         {
             // copy to clipboard form URL
             Clipboard.SetData(DataFormats.Text, this.Url.AbsoluteUri);
+        }
+
+        public bool Archive()
+        {
+            this.ModificationDate = DateTime.Now;
+            this.Status = State.Archived;
+            return true;
         }
     }
 }

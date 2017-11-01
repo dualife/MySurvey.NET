@@ -48,29 +48,29 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-            <TabItem Header="Acceuil" x:Name="acceuilTi">
+            <TabItem Header="Acceuil" x:Name="AcceuilTi">
 
-                <uc:FormsManagementUserControl x:Name="acceuilUc"/>
-
-            </TabItem>
-            <TabItem Header="Archives" x:Name="archivesTi">
-
-                <uc:FormsManagementUserControl x:Name="archiveUc"/>
+                <uc:FormsManagementUserControl x:Name="AcceuilUc"/>
 
             </TabItem>
-            <TabItem Header="Mentions" x:Name="mentionsTi">
+            <TabItem Header="Archives" x:Name="ArchivesTi">
 
-                <uc:TextTabUserControl x:Name="mentionUc"/>
-
-            </TabItem>
-            <TabItem Header="Confirmation" x:Name="confirmationTi">
-
-                <uc:TextTabUserControl x:Name="confirmationUc"/>
+                <uc:FormsManagementUserControl x:Name="ArchiveUc"/>
 
             </TabItem>
-            <TabItem Header="Clôture" x:Name="clotureTi">
+            <TabItem Header="Mentions" x:Name="MentionsTi">
 
-                <uc:TextTabUserControl x:Name="clotureUc"/>
+                <uc:TextTabUserControl x:Name="MentionUc"/>
+
+            </TabItem>
+            <TabItem Header="Confirmation" x:Name="ConfirmationTi">
+
+                <uc:TextTabUserControl x:Name="ConfirmationUc"/>
+
+            </TabItem>
+            <TabItem Header="Clôture" x:Name="ClotureTi">
+
+                <uc:TextTabUserControl x:Name="ClotureUc"/>
 
             </TabItem>
         </TabControl>

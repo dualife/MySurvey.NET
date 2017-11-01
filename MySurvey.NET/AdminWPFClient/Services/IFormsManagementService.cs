@@ -6,7 +6,6 @@
 // </copyright>
 
 using AdminWPFClient.Models;
-using AdminWPFClient.Utils;
 using System.Collections.Generic;
 
 namespace AdminWPFClient.Services
@@ -20,5 +19,9 @@ namespace AdminWPFClient.Services
         IEnumerable<Form> GetCurrentFormsList();
 
         IEnumerable<Form> GetArchivedFormsList();
+
+        bool ArchiveForm(Form form);
+
+        Form DuplicateForm(Form original);
     }
 }

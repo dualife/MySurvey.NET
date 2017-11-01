@@ -10,17 +10,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Utils
 {
+    /// <inheritdoc />
     /// <summary>
     ///     This class adds the ability to refresh the list when any property of
     ///     the objects changes in the list which implements the INotifyPropertyChanged.
     ///     from https://www.codeproject.com/Tips/694370/How-to-Listen-to-Property-Chang
     /// </summary>
-    /// <typeparam name="T">
+    /// <typeparam name="T" />
     public class ItemsChangeObservableCollection<T> :
             ObservableCollection<T> where T : INotifyPropertyChanged
     {
@@ -30,18 +29,18 @@ namespace AdminWPFClient.Utils
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
+            switch (e.Action)
             {
-                RegisterPropertyChanged(e.NewItems);
-            }
-            else if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                UnRegisterPropertyChanged(e.OldItems);
-            }
-            else if (e.Action == NotifyCollectionChangedAction.Replace)
-            {
-                UnRegisterPropertyChanged(e.OldItems);
-                RegisterPropertyChanged(e.NewItems);
+                case NotifyCollectionChangedAction.Add:
+                    RegisterPropertyChanged(e.NewItems);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    UnRegisterPropertyChanged(e.OldItems);
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    UnRegisterPropertyChanged(e.OldItems);
+                    RegisterPropertyChanged(e.NewItems);
+                    break;
             }
 
             base.OnCollectionChanged(e);
@@ -53,24 +52,24 @@ namespace AdminWPFClient.Utils
             base.ClearItems();
         }
 
-        private void RegisterPropertyChanged(IList items)
+        private void RegisterPropertyChanged(IEnumerable items)
         {
             foreach (INotifyPropertyChanged item in items)
             {
                 if (item != null)
                 {
-                    item.PropertyChanged += new PropertyChangedEventHandler(Item_PropertyChanged);
+                    item.PropertyChanged += Item_PropertyChanged;
                 }
             }
         }
 
-        private void UnRegisterPropertyChanged(IList items)
+        private void UnRegisterPropertyChanged(IEnumerable items)
         {
             foreach (INotifyPropertyChanged item in items)
             {
                 if (item != null)
                 {
-                    item.PropertyChanged -= new PropertyChangedEventHandler(Item_PropertyChanged);
+                    item.PropertyChanged -= Item_PropertyChanged;
                 }
             }
         }

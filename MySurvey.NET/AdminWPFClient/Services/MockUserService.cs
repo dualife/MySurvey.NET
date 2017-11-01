@@ -13,21 +13,21 @@ namespace AdminWPFClient.Services
 {
     public class MockUserService : IUserService
     {
-        private string currentLoggedUserName = string.Empty;
-        private string mentionsText = string.Empty;
-        private string confirmationText = string.Empty;
-        private string clotureText = string.Empty;
-        private string mentionsFile = string.Empty;
+        private string _currentLoggedUserName = string.Empty;
+        private string _mentionsText = string.Empty;
+        private string _confirmationText = string.Empty;
+        private string _clotureText = string.Empty;
+        private string _mentionsFile = string.Empty;
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
             // unsecure use of SecureString
-            string pwd = securePassword.GetUnsecureString();
+            var pwd = securePassword.GetUnsecureString();
 
             // mock authentification allowing no password or same than username
             if (string.IsNullOrEmpty(pwd) || pwd == userName)
             {
-                this.currentLoggedUserName = userName;
+                this._currentLoggedUserName = userName;
                 return true;
             }
 
@@ -36,71 +36,71 @@ namespace AdminWPFClient.Services
 
         public string GetLoggedUsername()
         {
-            if (string.IsNullOrWhiteSpace(this.currentLoggedUserName))
+            if (string.IsNullOrWhiteSpace(this._currentLoggedUserName))
             {
                 throw new InvalidOperationException("not logged yet");
             }
 
-            return this.currentLoggedUserName;
+            return this._currentLoggedUserName;
         }
 
         public string GetMentionsText()
         {
-            return this.mentionsText;
+            return this._mentionsText;
         }
 
         public bool SetMentionsText(string text)
         {
-            this.mentionsText = text;
+            this._mentionsText = text;
             return true;
         }
 
         public string GetConfirmationText()
         {
-            return this.confirmationText;
+            return this._confirmationText;
         }
 
         public bool SetConfirmationText(string text)
         {
-            this.confirmationText = text;
+            this._confirmationText = text;
             return true;
         }
 
         public string GetClotureText()
         {
-            return this.clotureText;
+            return this._clotureText;
         }
 
         public bool SetClotureText(string text)
         {
-            this.clotureText = text;
+            this._clotureText = text;
             return true;
         }
 
         public string GetMentionsFile()
         {
-            return this.mentionsFile;
+            return this._mentionsFile;
         }
 
         public bool SaveMentionsFile(string filePath)
         {
-            this.mentionsFile = filePath;
+            this._mentionsFile = filePath;
             return true;
         }
 
         public bool DeleteMentionsFile()
         {
-            this.mentionsFile = string.Empty;
+            this._mentionsFile = string.Empty;
             return true;
         }
 
         public void Logoff()
         {
-            currentLoggedUserName = string.Empty;
-            mentionsText = string.Empty;
-            confirmationText = string.Empty;
-            clotureText = string.Empty;
-            mentionsFile = string.Empty;
+            _currentLoggedUserName = string.Empty;
+            _mentionsText = string.Empty;
+            _confirmationText = string.Empty;
+            _clotureText = string.Empty;
+            _mentionsFile = string.Empty;
         }
 
         public bool SetNewPassword(string oldPassword, string newPassword, ref string errorMessage)

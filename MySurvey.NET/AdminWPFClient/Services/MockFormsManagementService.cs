@@ -14,49 +14,60 @@ namespace AdminWPFClient.Services
 {
     public class MockFormsManagementService : IFormsManagementService
     {
-        private List<Form> forms = null;
+        private readonly List<Form> _forms = null;
 
         public MockFormsManagementService()
         {
-            this.forms = new List<Form>();
+            this._forms = new List<Form>();
         }
 
         public Form CreateForm(IUserService userService)
         {
-            var newForm = new Form()
+            var newForm = new Form(this.GetNewId())
             {
-                Id = this.GetNewId(),
                 AuthorName = userService.GetLoggedUsername(),
                 CreationDate = DateTime.Now,
                 ModificationDate = DateTime.Now,
                 NumberOfAnswers = 10,
                 Status = Form.State.InProgress,
                 Title = "newEmptyForm",
-                Url= new Uri("http://i2.kym-cdn.com/entries/icons/facebook/000/001/030/dickbutt.jpg")
+                Url = new Uri("http://i2.kym-cdn.com/entries/icons/facebook/000/001/030/dickbutt.jpg")
             };
 
-            this.forms.Add(newForm);
+            this._forms.Add(newForm);
             return newForm;
         }
 
         public bool DeleteForm(Form form)
         {
-            return this.forms.Remove(form);
+            return this._forms.Remove(form);
         }
 
         public IEnumerable<Form> GetCurrentFormsList()
         {
-            return this.forms.Where(element => element.Status != Form.State.Archived && element.Status != Form.State.Closed);
+            return this._forms.Where(element => element.Status != Form.State.Archived && element.Status != Form.State.Closed);
         }
 
         public IEnumerable<Form> GetArchivedFormsList()
         {
-            return this.forms.Where(element => element.Status == Form.State.Archived);
+            return this._forms.Where(element => element.Status == Form.State.Archived);
         }
 
         private int GetNewId()
         {
-            return this.forms.Count + 1;
+            return this._forms.Count + 1;
+        }
+
+        public bool ArchiveForm(Form form)
+        {
+            return form.Archive();
+        }
+
+        public Form DuplicateForm(Form original)
+        {
+            var newForm = new Form(this.GetNewId(), original);
+            this._forms.Add(newForm);
+            return newForm;
         }
     }
 }

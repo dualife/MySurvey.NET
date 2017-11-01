@@ -9,6 +9,7 @@ namespace AdminWPFClient.Windows
     /// </summary>
     public partial class LoginWindow : Window
     {
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the LoginWindow class.
         /// </summary>
@@ -17,14 +18,12 @@ namespace AdminWPFClient.Windows
             InitializeComponent();
 
             this.PasswordBx.PasswordChanged += PasswordBx_PasswordChanged;
-            this.connectBtn.Click += ConnectBtn_Click; 
+            this.ConnectBtn.Click += ConnectBtn_Click; 
         }
 
         private void PasswordBx_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var VM = this.DataContext as LoginViewModel;
-
-            VM.PasswordHash = this.PasswordBx.SecurePassword;
+            if (this.DataContext is LoginViewModel vm) vm.PasswordHash = this.PasswordBx.SecurePassword;
         }
 
         private void ConnectBtn_Click(object sender, RoutedEventArgs e)

@@ -18,196 +18,163 @@ namespace AdminWPFClient.ViewModels
 {
     public class FormsManagementViewModel : ViewModelBase
     {
-        private IFormsManagementService formsService = null;
-        private IUserService userService = null;
-        private ItemsChangeObservableCollection<SelectableForm> formsList = null;
-        private string context = string.Empty;
-        private RelayCommand<string> loadedCmd = null;
-        private RelayCommand<SelectableForm> goToFormUrlCmd = null;
-        private RelayCommand<SelectableForm> copyFormUrlCmd = null;
-        private RelayCommand<SelectableForm> editFormCmd = null;
-        private RelayCommand<SelectableForm> deployFormCmd = null;
-        private RelayCommand<SelectableForm> endFormCmd = null;
-        private RelayCommand<SelectableForm> duplicateFormCmd = null;
-        private RelayCommand<SelectableForm> archiveFormCmd = null;
-        private RelayCommand<SelectableForm> deleteFormCmd = null;
-        private RelayCommand createFormCmd = null;
-        private RelayCommand archiveFormsCmd = null;
-        private RelayCommand deleteFormsCmd = null;
-        private RelayCommand updateFormsSelectedCmd = null;
+        private readonly IFormsManagementService _formsService = null;
+        private readonly IUserService _userService = null;
+        private ItemsChangeObservableCollection<SelectableForm> _formsList = null;
+        private string _context = string.Empty;
+        private RelayCommand<string> _loadedCmd = null;
+        private RelayCommand<SelectableForm> _goToFormUrlCmd = null;
+        private RelayCommand<SelectableForm> _copyFormUrlCmd = null;
+        private RelayCommand<SelectableForm> _editFormCmd = null;
+        private RelayCommand<SelectableForm> _deployFormCmd = null;
+        private RelayCommand<SelectableForm> _endFormCmd = null;
+        private RelayCommand<SelectableForm> _duplicateFormCmd = null;
+        private RelayCommand<SelectableForm> _archiveFormCmd = null;
+        private RelayCommand<SelectableForm> _deleteFormCmd = null;
+        private RelayCommand _createFormCmd = null;
+        private RelayCommand _archiveFormsCmd = null;
+        private RelayCommand _deleteFormsCmd = null;
+        private RelayCommand _updateFormsSelectedCmd = null;
 
         public FormsManagementViewModel(IUserService userService, IFormsManagementService formsService)
         {
-            this.userService = userService;
-            this.formsService = formsService;
+            this._userService = userService;
+            this._formsService = formsService;
         }
 
         public ItemsChangeObservableCollection<SelectableForm> FormsList
         {
-            get
-            {
-                return this.formsList;
-            }
+            get => this._formsList;
 
             set
             {
-                if (value != this.formsList)
-                    this.Set(ref this.formsList, value);
+                if (value != this._formsList)
+                    this.Set(ref this._formsList, value);
             }
         }
 
         public RelayCommand<string> LoadedCmd
         {
-            get
-            {
-                return this.loadedCmd ?? (this.loadedCmd = new RelayCommand<string>(
-                    this.LoadedAction));
-            }
+            get => this._loadedCmd ?? (this._loadedCmd = new RelayCommand<string>(
+                       this.LoadedAction));
 
             set
             {
-                if (value != this.loadedCmd)
-                    this.Set(ref this.loadedCmd, value);
+                if (value != this._loadedCmd)
+                    this.Set(ref this._loadedCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> GoToFormUrlCmd
         {
-            get
-            {
-                return this.goToFormUrlCmd ?? (this.goToFormUrlCmd = new RelayCommand<SelectableForm>(
-                    this.GoToFormUrlAction));
-            }
+            get => this._goToFormUrlCmd ?? (this._goToFormUrlCmd = new RelayCommand<SelectableForm>(
+                       GoToFormUrlAction));
 
             set
             {
-                if (value != this.goToFormUrlCmd)
-                    this.Set(ref this.goToFormUrlCmd, value);
+                if (value != this._goToFormUrlCmd)
+                    this.Set(ref this._goToFormUrlCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> CopyFormUrlCmd
         {
-            get
-            {
-                return this.copyFormUrlCmd ?? (this.copyFormUrlCmd = new RelayCommand<SelectableForm>(
-                    this.CopyFormUrlAction));
-            }
+            get => this._copyFormUrlCmd ?? (this._copyFormUrlCmd = new RelayCommand<SelectableForm>(
+                       CopyFormUrlAction));
 
             set
             {
-                if (value != this.copyFormUrlCmd)
-                    this.Set(ref this.copyFormUrlCmd, value);
+                if (value != this._copyFormUrlCmd)
+                    this.Set(ref this._copyFormUrlCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> EditFormCmd
         {
-            get
-            {
-                return this.editFormCmd ?? (this.editFormCmd = new RelayCommand<SelectableForm>(
-                    this.EditFormAction));
-            }
+            get => this._editFormCmd ?? (this._editFormCmd = new RelayCommand<SelectableForm>(
+                       this.EditFormAction));
 
             set
             {
-                if (value != this.editFormCmd)
-                    this.Set(ref this.editFormCmd, value);
+                if (value != this._editFormCmd)
+                    this.Set(ref this._editFormCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> DeployFormCmd
         {
-            get
-            {
-                return this.deployFormCmd ?? (this.deployFormCmd = new RelayCommand<SelectableForm>(
-                    this.DeployFormAction));
-            }
+            get => this._deployFormCmd ?? (this._deployFormCmd = new RelayCommand<SelectableForm>(
+                       this.DeployFormAction));
 
             set
             {
-                if (value != this.deployFormCmd)
-                    this.Set(ref this.deployFormCmd, value);
+                if (value != this._deployFormCmd)
+                    this.Set(ref this._deployFormCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> EndFormCmd
         {
-            get
-            {
-                return this.endFormCmd ?? (this.endFormCmd = new RelayCommand<SelectableForm>(
-                    this.EndFormAction));
-            }
+            get => this._endFormCmd ?? (this._endFormCmd = new RelayCommand<SelectableForm>(
+                       this.EndFormAction));
 
             set
             {
-                if (value != this.endFormCmd)
-                    this.Set(ref this.endFormCmd, value);
+                if (value != this._endFormCmd)
+                    this.Set(ref this._endFormCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> DuplicateFormCmd
         {
-            get
-            {
-                return this.duplicateFormCmd ?? (this.duplicateFormCmd = new RelayCommand<SelectableForm>(
-                    this.DuplicateFormAction));
-            }
+            get => this._duplicateFormCmd ?? (this._duplicateFormCmd = new RelayCommand<SelectableForm>(
+                       this.DuplicateFormAction));
 
             set
             {
-                if (value != this.duplicateFormCmd)
-                    this.Set(ref this.duplicateFormCmd, value);
+                if (value != this._duplicateFormCmd)
+                    this.Set(ref this._duplicateFormCmd, value);
             }
         }
 
         public RelayCommand<SelectableForm> ArchiveFormCmd
         {
-            get
-            {
-                return this.archiveFormCmd ?? (this.archiveFormCmd = new RelayCommand<SelectableForm>(
-                    this.ArchiveFormAction));
-            }
+            get => this._archiveFormCmd ?? (this._archiveFormCmd = new RelayCommand<SelectableForm>(
+                       this.ArchiveFormAction));
 
             set
             {
-                if (value != this.archiveFormCmd)
-                    this.Set(ref this.archiveFormCmd, value);
+                if (value != this._archiveFormCmd)
+                    this.Set(ref this._archiveFormCmd, value);
             }
         }
 
 
         public RelayCommand<SelectableForm> DeleteFormCmd
         {
-            get
-            {
-                return this.deleteFormCmd ?? (this.deleteFormCmd = new RelayCommand<SelectableForm>(
-                    this.DeleteFormAction));
-            }
+            get => this._deleteFormCmd ?? (this._deleteFormCmd = new RelayCommand<SelectableForm>(
+                       this.DeleteFormAction));
 
             set
             {
-                if (value != this.deleteFormCmd)
-                    this.Set(ref this.deleteFormCmd, value);
+                if (value != this._deleteFormCmd)
+                    this.Set(ref this._deleteFormCmd, value);
             }
         }
 
         public RelayCommand CreateFormCmd
         {
-            get
-            {
-                return this.createFormCmd ?? (this.createFormCmd = new RelayCommand(
-                    () =>
-                    {
-                        var newForm = this.formsService.CreateForm(userService);
-                        this.FormsList?.Add(new SelectableForm(newForm));
-                    }));
-            }
+            get => this._createFormCmd ?? (this._createFormCmd = new RelayCommand(
+                       () =>
+                       {
+                           var newForm = this._formsService.CreateForm(_userService);
+                           this.FormsList?.Add(new SelectableForm(newForm));
+                       }));
 
             set
             {
-                if (value != this.createFormCmd)
-                    this.Set(ref this.createFormCmd, value);
+                if (value != this._createFormCmd)
+                    this.Set(ref this._createFormCmd, value);
             }
         }
 
@@ -215,10 +182,16 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.archiveFormsCmd ?? (this.archiveFormsCmd = new RelayCommand(
+                return this._archiveFormsCmd ?? (this._archiveFormsCmd = new RelayCommand(
                     () =>
                     {
-                        throw new NotImplementedException();
+                        for (var i = this.FormsList.Count - 1; i >= 0; i--)
+                        {
+                            if (this.FormsList[i].IsSelected)
+                            {
+                                this.ArchiveFormAction(this.FormsList[i]);
+                            }
+                        }
                     },
                     () =>
                     {
@@ -228,8 +201,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.archiveFormsCmd)
-                    this.Set(ref this.archiveFormsCmd, value);
+                if (value != this._archiveFormsCmd)
+                    this.Set(ref this._archiveFormsCmd, value);
             }
         }
 
@@ -237,10 +210,10 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.deleteFormsCmd ?? (this.deleteFormsCmd = new RelayCommand(
+                return this._deleteFormsCmd ?? (this._deleteFormsCmd = new RelayCommand(
                     () =>
                     {
-                        for (int i = this.FormsList.Count - 1; i >= 0; i--)
+                        for (var i = this.FormsList.Count - 1; i >= 0; i--)
                         {
                             if (this.FormsList[i].IsSelected)
                             {
@@ -256,8 +229,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.deleteFormsCmd)
-                    this.Set(ref this.deleteFormsCmd, value);
+                if (value != this._deleteFormsCmd)
+                    this.Set(ref this._deleteFormsCmd, value);
             }
         }
 
@@ -265,7 +238,7 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.updateFormsSelectedCmd ?? (this.updateFormsSelectedCmd = new RelayCommand(
+                return this._updateFormsSelectedCmd ?? (this._updateFormsSelectedCmd = new RelayCommand(
                     () =>
                     {
                         this.RaisePropertyChanged(() => this.IsAllFormsSelected);
@@ -274,8 +247,8 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.updateFormsSelectedCmd)
-                    this.Set(ref this.updateFormsSelectedCmd, value);
+                if (value != this._updateFormsSelectedCmd)
+                    this.Set(ref this._updateFormsSelectedCmd, value);
             }
         }
 
@@ -295,37 +268,37 @@ namespace AdminWPFClient.ViewModels
 
         private void FormsList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (this.archiveFormsCmd != null)
-                this.archiveFormsCmd.RaiseCanExecuteChanged();
-            if (this.deleteFormsCmd != null)
-                this.deleteFormsCmd.RaiseCanExecuteChanged();
+            _archiveFormsCmd?.RaiseCanExecuteChanged();
+            _deleteFormsCmd?.RaiseCanExecuteChanged();
         }
 
         private void LoadedAction(string uclName)
         {
             // OnLoad
-            this.context = uclName;
-            switch (this.context)
+            this._context = uclName;
+            switch (this._context)
             {
                 case "acceuilUc":
                     this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                        this.formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
+                        this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
                     break;
                 case "archiveUc":
                     this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                        this.formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
+                        this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             this.FormsList.CollectionChanged += FormsList_CollectionChanged;
         }
 
-        private void GoToFormUrlAction(SelectableForm selectedForm)
+        private static void GoToFormUrlAction(SelectableForm selectedForm)
         {
             selectedForm.Form.GoToUrl();
         }
 
-        private void CopyFormUrlAction(SelectableForm selectedForm)
+        private static void CopyFormUrlAction(SelectableForm selectedForm)
         {
             selectedForm.Form.CopyUrlToClipboard();
 
@@ -349,18 +322,20 @@ namespace AdminWPFClient.ViewModels
 
         private void DuplicateFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("DuplicateFormAction");
+            var newForm = this._formsService.DuplicateForm(selectedForm.Form);
+            this.FormsList?.Add(new SelectableForm(newForm));
         }
 
         private void ArchiveFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("ArchiveFormAction");
+            this.FormsList?.Remove(selectedForm);
+            this._formsService.ArchiveForm(selectedForm.Form);
         }
 
         private void DeleteFormAction(SelectableForm selectedForm)
         {
             this.FormsList?.Remove(selectedForm);
-            this.formsService.DeleteForm(selectedForm.Form);
+            this._formsService.DeleteForm(selectedForm.Form);
         }
     }
 }

@@ -16,59 +16,58 @@ namespace AdminWPFClient.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private IUserService userService = null;
-        private string loginField = "admin";
-        private RelayCommand<SecureString> connectCmd = null;
+        private readonly IUserService _userService = null;
+        private string _loginField = "admin";
+        private RelayCommand<SecureString> _connectCmd = null;
 
         public LoginViewModel(IUserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
         }
 
         public string LoginField
         {
-            get
-            {
-                return this.loginField;
-            }
+            get => this._loginField;
 
             set
             {
-                if (value != this.loginField)
-                    this.Set(ref this.loginField, value);
+                if (value != this._loginField)
+                    this.Set(ref this._loginField, value);
             }
         }
+
+        public SecureString PasswordHash { get; internal set; }
+
 
         public RelayCommand<SecureString> ConnectCmd
         {
             get
             {
-                return this.connectCmd ?? new RelayCommand<SecureString>(
+                return this._connectCmd ?? new RelayCommand<SecureString>(
                     securePassword =>
                     {
                         var val = this.PasswordHash;
 
-                        /// TODO securepassword always empty...
-                        if (!this.userService.Authenticate(this.LoginField, securePassword))
+                        // TODO securepassword always empty...
+                        if (!this._userService.Authenticate(this.LoginField, securePassword))
                         {
                             MessageBox.Show("Mot de passe invalide!");
                             return;
                         }
 
-                        var currentWindow = App.Current.Windows[0];
+                        var currentWindow = Application.Current.Windows[0];
                         var newWindow = new MainWindow();
-                        currentWindow.Close();
+                        currentWindow?.Close();
                         newWindow.Show();
                     });
             }
 
             set
             {
-                if (value != this.connectCmd)
-                    this.Set(ref this.connectCmd, value);
+                if (value != this._connectCmd)
+                    this.Set(ref this._connectCmd, value);
             }
         }
 
-        public SecureString PasswordHash { get; internal set; }
     }
 }

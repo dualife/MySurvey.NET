@@ -11,39 +11,27 @@ namespace AdminWPFClient.Models
 {
     public class SelectableForm : ObservableObject
     {
-        private bool isSelected;
-        private Form form;
+        private bool _isSelected;
+        private Form _form;
 
         public SelectableForm(Form item)
         {
-            this.form = item;
-            this.isSelected = false;
+            this._form = item;
+            this._isSelected = false;
         }
 
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get => this._isSelected;
 
-            set
-            {
-                this.Set(ref this.isSelected, value);
-            }
+            set => this.Set(ref this._isSelected, value);
         }
 
         public Form Form
         {
-            get
-            {
-                return this.form;
-            }
+            get => this._form;
 
-            set
-            {
-                this.Set(ref this.form, value);
-            }
+            set => this.Set(ref this._form, value);
         }
     }
 }

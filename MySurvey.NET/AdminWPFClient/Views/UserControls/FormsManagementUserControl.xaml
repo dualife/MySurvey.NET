@@ -20,7 +20,7 @@
 
     <UserControl.Resources>
 
-        <DataTemplate x:Key="URLCt">
+        <DataTemplate x:Key="UrlCt">
             <StackPanel Orientation="Horizontal">
 
                 <Button ToolTip="Accéder à l'URL du formulaire" Command="{Binding FormsManagement.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
@@ -104,7 +104,7 @@
 
                     <GridViewColumn Header="Titre" DisplayMemberBinding="{Binding Form.Title}"/>
 
-                    <GridViewColumn Header="Liens" CellTemplate="{StaticResource URLCt}"/>
+                    <GridViewColumn Header="Liens" CellTemplate="{StaticResource UrlCt}"/>
 
                     <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
 

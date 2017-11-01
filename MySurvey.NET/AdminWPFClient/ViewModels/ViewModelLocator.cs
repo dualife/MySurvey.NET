@@ -63,45 +63,15 @@ namespace AdminWPFClient.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public LoginViewModel Login
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<LoginViewModel>();
-            }
-        }
+        public LoginViewModel Login => ServiceLocator.Current.GetInstance<LoginViewModel>();
 
-        public FormsManagementViewModel FormsManagement
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<FormsManagementViewModel>();
-            }
-        }
+        public FormsManagementViewModel FormsManagement => ServiceLocator.Current.GetInstance<FormsManagementViewModel>();
 
-        public TextTabViewModel TextTab
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<TextTabViewModel>();
-            }
-        }
+        public TextTabViewModel TextTab => ServiceLocator.Current.GetInstance<TextTabViewModel>();
 
-        public EditAccountViewModel EditAccount
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<EditAccountViewModel>();
-            }
-        }
+        public EditAccountViewModel EditAccount => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
 
         /// <summary>
         /// Cleans up all the resources.

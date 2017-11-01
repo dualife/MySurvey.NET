@@ -5,72 +5,62 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
-using System;
 using AdminWPFClient.Services;
+using AdminWPFClient.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
-using AdminWPFClient.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly IUserService userService;
-        private string windowTitleLabel = "Tableau de bord des formulaires";
-        private string accountLabel = string.Empty;
-        private RelayCommand<string> tabSelectionChangedCmd = null;
-        private RelayCommand helpCmd = null;
-        private RelayCommand editAccountCmd = null;
-        private RelayCommand logoffCmd = null;
+        private readonly IUserService _userService;
+        private string _windowTitleLabel = "Tableau de bord des formulaires";
+        private string _accountLabel = string.Empty;
+        private RelayCommand<string> _tabSelectionChangedCmd = null;
+        private RelayCommand _helpCmd = null;
+        private RelayCommand _editAccountCmd = null;
+        private RelayCommand _logoffCmd = null;
 
         public MainViewModel(IUserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
             this.AccountLabel = "Bienvenue, " + userService.GetLoggedUsername();
         }
 
         public string WindowTitleLabel
         {
-            get
-            {
-                return this.windowTitleLabel;
-            }
+            get => this._windowTitleLabel;
 
             set
             {
-                if (value != this.windowTitleLabel)
-                    this.Set(ref this.windowTitleLabel, value);
+                if (value != this._windowTitleLabel)
+                    this.Set(ref this._windowTitleLabel, value);
             }
         }
 
         public string AccountLabel
         {
-            get
-            {
-                return this.accountLabel;
-            }
+            get => this._accountLabel;
 
             set
             {
-                if (value != this.accountLabel)
-                    this.Set(ref this.accountLabel, value);
+                if (value != this._accountLabel)
+                    this.Set(ref this._accountLabel, value);
             }
         }
 
         public RelayCommand<string> TabSelectionChangedCmd
         {
-            get
-            {
-                return this.tabSelectionChangedCmd
-                  ?? (this.tabSelectionChangedCmd = new RelayCommand<string>(
-                    this.TabChangedAction));
-            }
+            get => this._tabSelectionChangedCmd
+                   ?? (this._tabSelectionChangedCmd = new RelayCommand<string>(
+                       this.TabChangedAction));
 
             set
             {
-                if (value != this.tabSelectionChangedCmd)
-                    this.Set(ref this.tabSelectionChangedCmd, value);
+                if (value != this._tabSelectionChangedCmd)
+                    this.Set(ref this._tabSelectionChangedCmd, value);
             }
         }
 
@@ -78,8 +68,8 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
-                return this.helpCmd
-                  ?? (this.helpCmd = new RelayCommand(
+                return this._helpCmd
+                  ?? (this._helpCmd = new RelayCommand(
                       () =>
                       {
                           MessageBox.Show("Lis la doc!");
@@ -88,23 +78,20 @@ namespace AdminWPFClient.ViewModels
 
             set
             {
-                if (value != this.helpCmd)
-                    this.Set(ref this.helpCmd, value);
+                if (value != this._helpCmd)
+                    this.Set(ref this._helpCmd, value);
             }
         }
 
         public RelayCommand EditAccountCmd
         {
-            get
-            {
-                return this.editAccountCmd
-                  ?? (this.editAccountCmd = new RelayCommand(this.EditAccountAction));
-            }
+            get => this._editAccountCmd
+                   ?? (this._editAccountCmd = new RelayCommand(EditAccountAction));
 
             set
             {
-                if (value != this.editAccountCmd)
-                    this.Set(ref this.editAccountCmd, value);
+                if (value != this._editAccountCmd)
+                    this.Set(ref this._editAccountCmd, value);
             }
         }
 
@@ -112,16 +99,13 @@ namespace AdminWPFClient.ViewModels
 
         public RelayCommand LogoffCmd
         {
-            get
-            {
-                return this.logoffCmd
-                  ?? (this.logoffCmd = new RelayCommand(this.LogoffAction));
-            }
+            get => this._logoffCmd
+                   ?? (this._logoffCmd = new RelayCommand(this.LogoffAction));
 
             set
             {
-                if (value != this.logoffCmd)
-                    this.Set(ref this.logoffCmd, value);
+                if (value != this._logoffCmd)
+                    this.Set(ref this._logoffCmd, value);
             }
         }
 
@@ -144,12 +128,10 @@ namespace AdminWPFClient.ViewModels
                 case "clotureTi":
                     this.WindowTitleLabel = "Clôture";
                     break;
-                default:
-                    break;
             }
         }
 
-        private void EditAccountAction()
+        private static void EditAccountAction()
         {
             var newWindow = new EditAccountWindow();
             newWindow.ShowDialog();
@@ -157,12 +139,12 @@ namespace AdminWPFClient.ViewModels
 
         private void LogoffAction()
         {
-            userService.Logoff();
-            /// TODO: clean the user forms services and all
+            _userService.Logoff();
+            // TODO: clean the user forms services and all
 
-            var currentWindow = App.Current.Windows[0];
+            var currentWindow = Application.Current.Windows[0];
             var newWindow = new LoginWindow();
-            currentWindow.Close();
+            currentWindow?.Close();
             newWindow.Show();
         }
 

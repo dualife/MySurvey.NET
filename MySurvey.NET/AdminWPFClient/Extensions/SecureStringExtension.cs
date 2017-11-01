@@ -16,9 +16,9 @@ namespace AdminWPFClient.Extensions
         public static string GetUnsecureString(this SecureString sec)
         {
             string result = null;
-            int length = sec.Length;
-            IntPtr pointer = IntPtr.Zero;
-            char[] chars = new char[length];
+            var length = sec.Length;
+            var pointer = IntPtr.Zero;
+            var chars = new char[length];
 
             try
             {
