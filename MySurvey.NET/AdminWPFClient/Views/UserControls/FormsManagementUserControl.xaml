@@ -41,7 +41,7 @@
                     <assets:EditFormIcon/>
                 </Button>
 
-                <Button ToolTip="Valider le formulaire" Command="{Binding FormsManagement.DeployFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Publier le formulaire" Command="{Binding FormsManagement.PublishFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DeployFormIcon/>
                 </Button>
 

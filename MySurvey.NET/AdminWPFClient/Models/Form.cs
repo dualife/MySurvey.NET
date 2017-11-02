@@ -8,6 +8,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows;
+using Microsoft.Win32.SafeHandles;
 
 namespace AdminWPFClient.Models
 {
@@ -18,7 +19,7 @@ namespace AdminWPFClient.Models
             InProgress = 0,
             Validated = 1,
             Published = 2,
-            Closed = 3,
+            Ended = 3,
             Archived = 4
         }
 
@@ -72,6 +73,20 @@ namespace AdminWPFClient.Models
         {
             this.ModificationDate = DateTime.Now;
             this.Status = State.Archived;
+            return true;
+        }
+
+        public bool End()
+        {
+            this.ModificationDate = DateTime.Now;
+            this.Status = State.Ended;
+            return true;
+        }
+
+        public bool Publish()
+        {
+            this.ModificationDate = DateTime.Now;
+            this.Status = State.Published;
             return true;
         }
     }

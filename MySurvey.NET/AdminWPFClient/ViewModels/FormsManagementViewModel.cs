@@ -26,7 +26,7 @@ namespace AdminWPFClient.ViewModels
         private RelayCommand<SelectableForm> _goToFormUrlCmd = null;
         private RelayCommand<SelectableForm> _copyFormUrlCmd = null;
         private RelayCommand<SelectableForm> _editFormCmd = null;
-        private RelayCommand<SelectableForm> _deployFormCmd = null;
+        private RelayCommand<SelectableForm> _publishFormCmd = null;
         private RelayCommand<SelectableForm> _endFormCmd = null;
         private RelayCommand<SelectableForm> _duplicateFormCmd = null;
         private RelayCommand<SelectableForm> _archiveFormCmd = null;
@@ -101,15 +101,15 @@ namespace AdminWPFClient.ViewModels
             }
         }
 
-        public RelayCommand<SelectableForm> DeployFormCmd
+        public RelayCommand<SelectableForm> PublishFormCmd
         {
-            get => this._deployFormCmd ?? (this._deployFormCmd = new RelayCommand<SelectableForm>(
-                       this.DeployFormAction));
+            get => this._publishFormCmd ?? (this._publishFormCmd = new RelayCommand<SelectableForm>(
+                       this.PublishFormAction));
 
             set
             {
-                if (value != this._deployFormCmd)
-                    this.Set(ref this._deployFormCmd, value);
+                if (value != this._publishFormCmd)
+                    this.Set(ref this._publishFormCmd, value);
             }
         }
 
@@ -278,11 +278,11 @@ namespace AdminWPFClient.ViewModels
             this._context = uclName;
             switch (this._context)
             {
-                case "acceuilUc":
+                case "AcceuilUc":
                     this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
                         this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
                     break;
-                case "archiveUc":
+                case "ArchiveUc":
                     this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
                         this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
                     break;
@@ -310,14 +310,16 @@ namespace AdminWPFClient.ViewModels
             MessageBox.Show("EditFormAction");
         }
 
-        private void DeployFormAction(SelectableForm selectedForm)
+        private void PublishFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("DeployFormAction");
+            this._formsService.PublishForm(selectedForm.Form);
+            selectedForm.RaisePropertyChanged();
         }
 
         private void EndFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("EndFormAction");
+            this._formsService.EndForm(selectedForm.Form);
+            selectedForm.RaisePropertyChanged();
         }
 
         private void DuplicateFormAction(SelectableForm selectedForm)
@@ -328,14 +330,14 @@ namespace AdminWPFClient.ViewModels
 
         private void ArchiveFormAction(SelectableForm selectedForm)
         {
-            this.FormsList?.Remove(selectedForm);
             this._formsService.ArchiveForm(selectedForm.Form);
+            this.FormsList?.Remove(selectedForm);
         }
 
         private void DeleteFormAction(SelectableForm selectedForm)
         {
-            this.FormsList?.Remove(selectedForm);
             this._formsService.DeleteForm(selectedForm.Form);
+            this.FormsList?.Remove(selectedForm);
         }
     }
 }

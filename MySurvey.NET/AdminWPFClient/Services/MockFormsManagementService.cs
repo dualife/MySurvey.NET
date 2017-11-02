@@ -45,7 +45,7 @@ namespace AdminWPFClient.Services
 
         public IEnumerable<Form> GetCurrentFormsList()
         {
-            return this._forms.Where(element => element.Status != Form.State.Archived && element.Status != Form.State.Closed);
+            return this._forms.Where(element => element.Status != Form.State.Archived);
         }
 
         public IEnumerable<Form> GetArchivedFormsList()
@@ -68,6 +68,16 @@ namespace AdminWPFClient.Services
             var newForm = new Form(this.GetNewId(), original);
             this._forms.Add(newForm);
             return newForm;
+        }
+
+        public bool EndForm(Form form)
+        {
+            return form.End();
+        }
+
+        public bool PublishForm(Form form)
+        {
+            return form.Publish();
         }
     }
 }

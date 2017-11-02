@@ -23,5 +23,9 @@ namespace AdminWPFClient.Services
         bool ArchiveForm(Form form);
 
         Form DuplicateForm(Form original);
+
+        bool EndForm(Form form);
+
+        bool PublishForm(Form form);
     }
 }
