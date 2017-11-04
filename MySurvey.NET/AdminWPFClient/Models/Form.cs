@@ -89,5 +89,12 @@ namespace AdminWPFClient.Models
             this.Status = State.Published;
             return true;
         }
+
+        public bool Restore()
+        {
+            this.ModificationDate = DateTime.Now;
+            this.Status = State.InProgress;
+            return true;
+        }
     }
 }

@@ -51,7 +51,8 @@ namespace AdminWPFClient.ViewModels
 
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<FormsManagementViewModel>();
+            SimpleIoc.Default.Register<AcceuilFormsViewModel>();
+            SimpleIoc.Default.Register<ArchiveFormsViewModel>();
             SimpleIoc.Default.Register<TextTabViewModel>();
             SimpleIoc.Default.Register<EditAccountViewModel>();
 
@@ -67,7 +68,9 @@ namespace AdminWPFClient.ViewModels
 
         public LoginViewModel Login => ServiceLocator.Current.GetInstance<LoginViewModel>();
 
-        public FormsManagementViewModel FormsManagement => ServiceLocator.Current.GetInstance<FormsManagementViewModel>();
+        public AcceuilFormsViewModel AcceuilForms => ServiceLocator.Current.GetInstance<AcceuilFormsViewModel>();
+
+        public ArchiveFormsViewModel ArchiveForms => ServiceLocator.Current.GetInstance<ArchiveFormsViewModel>();
 
         public TextTabViewModel TextTab => ServiceLocator.Current.GetInstance<TextTabViewModel>();
 

@@ -24,16 +24,16 @@
         <StackPanel DockPanel.Dock="Top">
 
             <Grid Margin="3">
-                
+
                 <Label Content="{Binding WindowTitleLabel}"/>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
 
                     <Label Content="{Binding AccountLabel}"/>
                     <Button Margin="3" Content="Mon compte" Command="{Binding EditAccountCmd}"/>
                     <Button Margin="3" Content="Se déconnecter" Command="{Binding LogoffCmd}"/>
-                    
+
                 </StackPanel>
-                
+
             </Grid>
 
             <Button Margin="3" HorizontalAlignment="Left" Content="Aide" Command="{Binding HelpCmd}"/>
@@ -50,12 +50,12 @@
 
             <TabItem Header="Acceuil" x:Name="AcceuilTi">
 
-                <uc:FormsManagementUserControl x:Name="AcceuilUc"/>
+                <uc:AcceuilFormsUserControl/>
 
             </TabItem>
             <TabItem Header="Archives" x:Name="ArchivesTi">
 
-                <uc:FormsManagementUserControl x:Name="ArchiveUc"/>
+                <uc:ArchiveFormsUserControl/>
 
             </TabItem>
             <TabItem Header="Mentions" x:Name="MentionsTi">

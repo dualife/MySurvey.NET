@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="AdminWPFClient.Assets.RestoreFormIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Rectangle Width="16" Height="16">
+        <Rectangle.Fill>
+            <DrawingBrush>
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M5.5381,11.9521L9.8451,8.1751C10.1211,7.9381 10.2751,7.6071 10.2751,7.2621 10.2751,6.9541 10.1571,6.6741 9.9651,6.4631L7.4111,8.9891 3.0001,8.9891 3.0001,4.5861 6.0001,1.5861 6.0001,3.8111 6.0901,3.7331C7.2821,2.8711 7.9681,2.6251 9.0961,2.6251 11.6501,2.6251 13.7281,4.7051 13.7281,7.2621 13.7281,8.6181 13.1391,9.9001 12.1091,10.7831L7.9491,14.3631z" />
+                            <GeometryDrawing Brush="#FF414141" Geometry="F1M9.0957,3.625C8.2337,3.625,7.7507,3.766,6.7447,4.489L4.9997,6 4.9997,4 3.9997,5 3.9997,7.989 6.9997,7.989 7.9997,7 5.9997,7 7.6847,5.598C8.1497,5.297 8.5787,5.08 9.0957,5.08 10.2967,5.08 11.2757,6.059 11.2757,7.262 11.2757,7.899 10.9957,8.504 10.5037,8.927L6.9997,12 7.9997,13 11.4587,10.023C12.2657,9.332 12.7287,8.325 12.7287,7.262 12.7287,5.257 11.0987,3.625 9.0957,3.625" />
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </Rectangle.Fill>
+    </Rectangle>
+</UserControl>

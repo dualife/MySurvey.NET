@@ -27,5 +27,6 @@ namespace AdminWPFClient.Services
         bool EndForm(Form form);
 
         bool PublishForm(Form form);
+        bool RestoreForm(Form form);
     }
 }

@@ -76,6 +76,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Assets\RestoreFormIcon.xaml.cs">
+      <DependentUpon>RestoreFormIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ArchiveFormsViewModel.cs" />
+    <Compile Include="Views\UserControls\ArchiveFormsUserControl.xaml.cs">
+      <DependentUpon>ArchiveFormsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\ArchiveFormIcon.xaml.cs">
       <DependentUpon>ArchiveFormIcon.xaml</DependentUpon>
     </Compile>
@@ -112,13 +119,13 @@
     <Compile Include="Services\MockFormsManagementService.cs" />
     <Compile Include="Services\MockUserService.cs" />
     <Compile Include="Utils\ItemsChangeObservableCollection.cs" />
-    <Compile Include="Views\UserControls\FormsManagementUserControl.xaml.cs">
-      <DependentUpon>FormsManagementUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\AcceuilFormsUserControl.xaml.cs">
+      <DependentUpon>AcceuilFormsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TextTabUserControl.xaml.cs">
       <DependentUpon>TextTabUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\FormsManagementViewModel.cs" />
+    <Compile Include="ViewModels\AcceuilFormsViewModel.cs" />
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -130,6 +137,14 @@
     <Compile Include="Views\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Assets\RestoreFormIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ArchiveFormsUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\DeleteFormIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,7 +177,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\FormsManagementUserControl.xaml">
+    <Page Include="Views\UserControls\AcceuilFormsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

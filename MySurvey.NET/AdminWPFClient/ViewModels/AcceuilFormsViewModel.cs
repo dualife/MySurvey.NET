@@ -1,4 +1,4 @@
-﻿// <copyright file="FormsManagementViewModel.cs" company="GosselCorp" author="gossel_c">
+﻿// <copyright file="AcceuilFormsViewModel.cs" company="GosselCorp" author="gossel_c">
 // Copyright © 2016 Cyril GOSSELIN gossel_c@outlook.fr
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -10,13 +10,12 @@ using AdminWPFClient.Services;
 using AdminWPFClient.Utils;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Linq;
 using System.Windows;
 
 namespace AdminWPFClient.ViewModels
 {
-    public class FormsManagementViewModel : ViewModelBase
+    public class AcceuilFormsViewModel : ViewModelBase
     {
         private readonly IFormsManagementService _formsService = null;
         private readonly IUserService _userService = null;
@@ -36,7 +35,7 @@ namespace AdminWPFClient.ViewModels
         private RelayCommand _deleteFormsCmd = null;
         private RelayCommand _updateFormsSelectedCmd = null;
 
-        public FormsManagementViewModel(IUserService userService, IFormsManagementService formsService)
+        public AcceuilFormsViewModel(IUserService userService, IFormsManagementService formsService)
         {
             this._userService = userService;
             this._formsService = formsService;
@@ -268,28 +267,30 @@ namespace AdminWPFClient.ViewModels
 
         private void FormsList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            _archiveFormsCmd?.RaiseCanExecuteChanged();
-            _deleteFormsCmd?.RaiseCanExecuteChanged();
+            this._archiveFormsCmd?.RaiseCanExecuteChanged();
+            this._deleteFormsCmd?.RaiseCanExecuteChanged();
+            this.RaisePropertyChanged(() => this.IsAllFormsSelected);
         }
 
         private void LoadedAction(string uclName)
         {
             // OnLoad
-            this._context = uclName;
-            switch (this._context)
-            {
-                case "AcceuilUc":
-                    this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                        this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
-                    break;
-                case "ArchiveUc":
-                    this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                        this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
+            //this._context = uclName;
+            //switch (this._context)
+            //{
+            //    case "AcceuilUc":
+            //        this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
+            //            this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
+            //        break;
+            //    case "ArchiveUc":
+            //        this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
+            //            this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
+            //        break;
+            //    default:
+            //        throw new ArgumentOutOfRangeException();
+            //}
+            this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
+                this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
             this.FormsList.CollectionChanged += FormsList_CollectionChanged;
         }
 

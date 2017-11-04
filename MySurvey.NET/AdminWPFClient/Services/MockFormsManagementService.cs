@@ -79,5 +79,10 @@ namespace AdminWPFClient.Services
         {
             return form.Publish();
         }
+
+        public bool RestoreForm(Form form)
+        {
+            return form.Restore();
+        }
     }
 }

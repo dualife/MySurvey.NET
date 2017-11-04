@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AdminWPFClient.UserControls.FormsManagementUserControl"
+<UserControl x:Class="AdminWPFClient.UserControls.ArchiveFormsUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,25 +9,24 @@
              xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
              xmlns:assets="clr-namespace:AdminWPFClient.Assets"
              d:DesignHeight="100" d:DesignWidth="500"
-             x:Name="FormsManagmentUc"
-             DataContext="{Binding FormsManagement, Source={StaticResource Locator}}">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding LoadedCmd}"
-                                CommandParameter="{Binding Name, ElementName=FormsManagmentUc}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
+             x:Name="ArchiveFormsUc"
+             DataContext="{Binding ArchiveForms, Source={StaticResource Locator}}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <cmd:EventToCommand Command="{Binding LoadedCmd}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    
     <UserControl.Resources>
 
         <DataTemplate x:Key="UrlCt">
             <StackPanel Orientation="Horizontal">
 
-                <Button ToolTip="Accéder à l'URL du formulaire" Command="{Binding FormsManagement.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Acceder a l'URL du formulaire" Command="{Binding ArchiveForms.GoToFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:GoToFormUrlIcon/>
                 </Button>
 
-                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding FormsManagement.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Copier l'URL du formulaire dans le presse-papier" Command="{Binding ArchiveForms.CopyFormUrlCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:CopyFormUrlIcon/>
                 </Button>
 
@@ -37,27 +36,27 @@
         <DataTemplate x:Key="ActionCt">
             <StackPanel Orientation="Horizontal">
 
-                <Button ToolTip="Modifier le formulaire" Command="{Binding FormsManagement.EditFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Modifier le formulaire" Command="{Binding ArchiveForms.EditFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:EditFormIcon/>
                 </Button>
 
-                <Button ToolTip="Publier le formulaire" Command="{Binding FormsManagement.PublishFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Publier le formulaire" Command="{Binding ArchiveForms.PublishFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DeployFormIcon/>
                 </Button>
 
-                <Button ToolTip="Cloturer le formulaire" Command="{Binding FormsManagement.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Cloturer le formulaire" Command="{Binding ArchiveForms.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:EndFormIcon/>
                 </Button>
 
-                <Button ToolTip="Dupliquer le formulaire" Command="{Binding FormsManagement.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Dupliquer le formulaire" Command="{Binding ArchiveForms.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DuplicateFormIcon/>
                 </Button>
 
-                <Button ToolTip="Archiver le formulaire" Command="{Binding FormsManagement.ArchiveFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
-                    <assets:ArchiveFormIcon/>
+                <Button ToolTip="Restaurer le formulaire" Command="{Binding ArchiveForms.RestoreFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                    <assets:RestoreFormIcon/>
                 </Button>
 
-                <Button ToolTip="Supprimer le formulaire" Command="{Binding FormsManagement.DeleteFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
+                <Button ToolTip="Supprimer le formulaire" Command="{Binding ArchiveForms.DeleteFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DeleteFormIcon/>
                 </Button>
 
@@ -68,12 +67,8 @@
 
     <DockPanel>
 
-        <WrapPanel DockPanel.Dock="Top" Margin="3">
-            <Button Content="Nouveau Formulaire" Margin="3" Command="{Binding CreateFormCmd}"/>
-        </WrapPanel>
-
         <DockPanel DockPanel.Dock="Bottom" Margin="3">
-            <Button DockPanel.Dock="Left" Margin="3" Content="Archiver" Command="{Binding ArchiveFormsCmd}"/>
+            <Button DockPanel.Dock="Left" Margin="3" Content="Restaurer" Command="{Binding RestoreFormsCmd}"/>
             <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="3" Content="Supprimer" Command="{Binding DeleteFormsCmd}"/>
         </DockPanel>
 
@@ -94,7 +89,7 @@
                                 <CheckBox IsChecked="{Binding IsSelected}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <cmd:EventToCommand Command="{Binding FormsManagement.UpdateFormsSelectedCmd, Source={StaticResource Locator}}"/>
+                                            <cmd:EventToCommand Command="{Binding ArchiveForms.UpdateFormsSelectedCmd, Source={StaticResource Locator}}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </CheckBox>
@@ -106,7 +101,7 @@
 
                     <GridViewColumn Header="Liens" CellTemplate="{StaticResource UrlCt}"/>
 
-                    <GridViewColumn Header="Création" DisplayMemberBinding="{Binding Form.CreationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
+                    <GridViewColumn Header="Creation" DisplayMemberBinding="{Binding Form.CreationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
 
                     <GridViewColumn Header="Modification" DisplayMemberBinding="{Binding Form.ModificationDate, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"/>
 
@@ -114,7 +109,7 @@
 
                     <GridViewColumn Header="Statut" DisplayMemberBinding="{Binding Form.Status}"/>
 
-                    <GridViewColumn Header="Nb réponses attendues" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
+                    <GridViewColumn Header="Nb reponses attendues" DisplayMemberBinding="{Binding Form.NumberOfAnswers}"/>
 
                     <GridViewColumn Header="Actions" CellTemplate="{StaticResource ActionCt}"/>
 
