@@ -100,22 +100,15 @@ namespace AdminWPFClient.ViewModels
                         // saveBtn
                         switch (this._context)
                         {
-                            case "mentionUc":
-                                this._userService.SetMentionsText(this.TextContent);
+                            case "MentionUc":
+                                this._userService.SetDefaultMentionsText(this.TextContent);
                                 break;
-                            case "confirmationUc":
-                                this._userService.SetConfirmationText(this.TextContent);
+                            case "ConfirmationUc":
+                                this._userService.SetDefaultConfirmationText(this.TextContent);
                                 break;
-                            case "clotureUc":
-                                this._userService.SetClotureText(this.TextContent);
+                            case "EndingUc":
+                                this._userService.SetDefaultEndingText(this.TextContent);
                                 break;
-                        }
-
-                        if (!string.IsNullOrWhiteSpace(this.FilePath))
-                        {
-                            this._userService.SaveMentionsFile(this.FilePath);
-                            this.FileUploadLabel = "Fichier chargé : " + Path.GetFileName(this.FilePath);
-                            this.DeleteFileCmd.RaiseCanExecuteChanged();
                         }
 
                         MessageBox.Show("Sauvegardé!");
@@ -137,12 +130,12 @@ namespace AdminWPFClient.ViewModels
                     () =>
                     {
                         // deleteBtn
-                        this._userService.DeleteMentionsFile();
+                        this._userService.DeleteDefaultMentionsFile();
                         this.FileUploadLabel = "Fichié chargé : Aucun.";
                         this.FilePath = string.Empty;
                         this.DeleteFileCmd.RaiseCanExecuteChanged();
                     },
-                    () => !string.IsNullOrWhiteSpace(this._userService.GetMentionsFile())
+                    () => !string.IsNullOrWhiteSpace(this._userService.GetDefaultMentionsFile())
                     ));
             }
 
@@ -172,9 +165,11 @@ namespace AdminWPFClient.ViewModels
                         if (openFileDialog.ShowDialog() == true)
                         {
                             this.FilePath = openFileDialog.FileName;
-                            var justFilename = Path.GetFileName(this.FilePath);
-                            this.FileUploadLabel = "Fichier à charger : " + justFilename;
+                            this._userService.SaveDefaultMentionsFile(this.FilePath);
+                            this.FileUploadLabel = "Fichier chargé : " + Path.GetFileName(this.FilePath);
+                            this.DeleteFileCmd.RaiseCanExecuteChanged();
                         }
+
                     }));
             }
 
@@ -203,11 +198,11 @@ namespace AdminWPFClient.ViewModels
             this.ShowUploadBar = false;
             switch (this._context)
             {
-                case "mentionUc":
+                case "MentionUc":
                     this.TabTitleLabel = "Mentions légales appliquées à chaque formulaire";
                     this.ShowUploadBar = true;
-                    this.TextContent = this._userService.GetMentionsText();
-                    this.FilePath = this._userService.GetMentionsFile();
+                    this.TextContent = this._userService.GetDefaultMentionsText();
+                    this.FilePath = this._userService.GetDefaultMentionsFile();
                     if (string.IsNullOrWhiteSpace(this.FilePath))
                     {
                         this.FileUploadLabel = "Fichier chargé : Aucun.";
@@ -219,13 +214,13 @@ namespace AdminWPFClient.ViewModels
                     }
 
                     break;
-                case "confirmationUc":
+                case "ConfirmationUc":
                     this.TabTitleLabel = "Message de confirmation appliqué à chaque formulaire";
-                    this.TextContent = this._userService.GetConfirmationText();
+                    this.TextContent = this._userService.GetDefaultConfirmationText();
                     break;
-                case "clotureUc":
+                case "EndingUc":
                     this.TabTitleLabel = "Message affiché une fois que le formulaire est clôturé.";
-                    this.TextContent = this._userService.GetClotureText();
+                    this.TextContent = this._userService.GetDefaultEndingText();
                     break;
             }
         }

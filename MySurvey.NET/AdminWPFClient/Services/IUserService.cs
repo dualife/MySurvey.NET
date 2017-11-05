@@ -15,23 +15,23 @@ namespace AdminWPFClient.Services
 
         string GetLoggedUsername();
 
-        string GetMentionsText();
+        string GetDefaultMentionsText();
 
-        bool SetMentionsText(string text);
+        bool SetDefaultMentionsText(string text);
 
-        string GetConfirmationText();
+        string GetDefaultConfirmationText();
 
-        bool SetConfirmationText(string text);
+        bool SetDefaultConfirmationText(string text);
 
-        string GetClotureText();
+        string GetDefaultEndingText();
 
-        bool SetClotureText(string text);
+        bool SetDefaultEndingText(string text);
 
-        string GetMentionsFile();
+        string GetDefaultMentionsFile();
 
-        bool SaveMentionsFile(string filePath);
+        bool SaveDefaultMentionsFile(string filePath);
 
-        bool DeleteMentionsFile();
+        bool DeleteDefaultMentionsFile();
 
         void Logoff();
 

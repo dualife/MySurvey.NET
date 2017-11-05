@@ -8,7 +8,6 @@
 using System;
 using System.Diagnostics;
 using System.Windows;
-using Microsoft.Win32.SafeHandles;
 
 namespace AdminWPFClient.Models
 {
@@ -39,6 +38,14 @@ namespace AdminWPFClient.Models
 
         public Uri Url { get; set; }
 
+        public string MentionsTxt { get; set; }
+
+        public string ConfirmationTxt { get; set; }
+
+        public string EndingTxt { get; set; }
+
+        public string MentionsFilePath { get; set; }
+
         public Form(int id)
         {
             this.Id = id;
@@ -53,6 +60,10 @@ namespace AdminWPFClient.Models
             this.AuthorName = original.AuthorName;
             this.Status = original.Status;
             this.NumberOfAnswers = original.NumberOfAnswers;
+            this.MentionsTxt  = original.MentionsTxt;
+            this.ConfirmationTxt = original.ConfirmationTxt;
+            this.EndingTxt = original.EndingTxt;
+            this.MentionsFilePath = original.MentionsFilePath;
             // temporary
             this.Url = original.Url;
         }

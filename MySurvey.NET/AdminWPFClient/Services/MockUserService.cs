@@ -7,6 +7,7 @@
 
 using AdminWPFClient.Extensions;
 using System;
+using System.IO;
 using System.Security;
 
 namespace AdminWPFClient.Services
@@ -14,10 +15,10 @@ namespace AdminWPFClient.Services
     public class MockUserService : IUserService
     {
         private string _currentLoggedUserName = string.Empty;
-        private string _mentionsText = string.Empty;
-        private string _confirmationText = string.Empty;
-        private string _clotureText = string.Empty;
-        private string _mentionsFile = string.Empty;
+        private string _mentionsText = "Default mention text.";
+        private string _confirmationText = "Default confirmation text.";
+        private string _endingText = "Default ending text.";
+        private string _mentionsFilePath = string.Empty;
 
         public bool Authenticate(string userName, SecureString securePassword)
         {
@@ -44,63 +45,64 @@ namespace AdminWPFClient.Services
             return this._currentLoggedUserName;
         }
 
-        public string GetMentionsText()
+        public string GetDefaultMentionsText()
         {
             return this._mentionsText;
         }
 
-        public bool SetMentionsText(string text)
+        public bool SetDefaultMentionsText(string text)
         {
             this._mentionsText = text;
             return true;
         }
 
-        public string GetConfirmationText()
+        public string GetDefaultConfirmationText()
         {
             return this._confirmationText;
         }
 
-        public bool SetConfirmationText(string text)
+        public bool SetDefaultConfirmationText(string text)
         {
             this._confirmationText = text;
             return true;
         }
 
-        public string GetClotureText()
+        public string GetDefaultEndingText()
         {
-            return this._clotureText;
+            return this._endingText;
         }
 
-        public bool SetClotureText(string text)
+        public bool SetDefaultEndingText(string text)
         {
-            this._clotureText = text;
+            this._endingText = text;
             return true;
         }
 
-        public string GetMentionsFile()
+        public string GetDefaultMentionsFile()
         {
-            return this._mentionsFile;
+            return this._mentionsFilePath;
         }
 
-        public bool SaveMentionsFile(string filePath)
+        public bool SaveDefaultMentionsFile(string filePath)
         {
-            this._mentionsFile = filePath;
+            if (!File.Exists(filePath)) return false;
+            this._mentionsFilePath = filePath;
             return true;
         }
 
-        public bool DeleteMentionsFile()
+        public bool DeleteDefaultMentionsFile()
         {
-            this._mentionsFile = string.Empty;
+            this._mentionsFilePath = string.Empty;
             return true;
         }
 
         public void Logoff()
         {
-            _currentLoggedUserName = string.Empty;
-            _mentionsText = string.Empty;
-            _confirmationText = string.Empty;
-            _clotureText = string.Empty;
-            _mentionsFile = string.Empty;
+            this._currentLoggedUserName = string.Empty;
+            this._mentionsText = string.Empty;
+            this._confirmationText = string.Empty;
+            this._endingText = string.Empty;
+            this._mentionsFilePath = string.Empty;
         }
 
         public bool SetNewPassword(string oldPassword, string newPassword, ref string errorMessage)

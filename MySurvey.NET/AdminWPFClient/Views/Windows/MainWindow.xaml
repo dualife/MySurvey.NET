@@ -68,9 +68,9 @@
                 <uc:TextTabUserControl x:Name="ConfirmationUc"/>
 
             </TabItem>
-            <TabItem Header="Clôture" x:Name="ClotureTi">
+            <TabItem Header="Clôture" x:Name="EndingTi">
 
-                <uc:TextTabUserControl x:Name="ClotureUc"/>
+                <uc:TextTabUserControl x:Name="EndingUc"/>
 
             </TabItem>
         </TabControl>

@@ -113,19 +113,19 @@ namespace AdminWPFClient.ViewModels
         {
             switch (tabName)
             {
-                case "acceuilTi":
+                case "AcceuilTi":
                     this.WindowTitleLabel = "Tableau de bord des formulaires";
                     break;
-                case "archivesTi":
+                case "ArchivesTi":
                     this.WindowTitleLabel = "Archives des formulaires";
                     break;
-                case "mentionsTi":
+                case "MentionsTi":
                     this.WindowTitleLabel = "Mentions";
                     break;
-                case "confirmationTi":
+                case "ConfirmationTi":
                     this.WindowTitleLabel = "Confirmation";
                     break;
-                case "clotureTi":
+                case "EndingTi":
                     this.WindowTitleLabel = "Clôture";
                     break;
             }
