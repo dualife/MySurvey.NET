@@ -40,14 +40,6 @@
                     <assets:EditFormIcon/>
                 </Button>
 
-                <Button ToolTip="Publier le formulaire" Command="{Binding ArchiveForms.PublishFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
-                    <assets:DeployFormIcon/>
-                </Button>
-
-                <Button ToolTip="Cloturer le formulaire" Command="{Binding ArchiveForms.EndFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
-                    <assets:EndFormIcon/>
-                </Button>
-
                 <Button ToolTip="Dupliquer le formulaire" Command="{Binding ArchiveForms.DuplicateFormCmd, Source={StaticResource Locator}}" CommandParameter="{Binding}">
                     <assets:DuplicateFormIcon/>
                 </Button>

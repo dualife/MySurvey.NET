@@ -24,8 +24,6 @@ namespace AdminWPFClient.ViewModels
         private RelayCommand<SelectableForm> _goToFormUrlCmd = null;
         private RelayCommand<SelectableForm> _copyFormUrlCmd = null;
         private RelayCommand<SelectableForm> _editFormCmd = null;
-        private RelayCommand<SelectableForm> _publishFormCmd = null;
-        private RelayCommand<SelectableForm> _endFormCmd = null;
         private RelayCommand<SelectableForm> _duplicateFormCmd = null;
         private RelayCommand<SelectableForm> _restoreFormCmd = null;
         private RelayCommand<SelectableForm> _deleteFormCmd = null;
@@ -100,30 +98,6 @@ namespace AdminWPFClient.ViewModels
             {
                 if (value != this._editFormCmd)
                     this.Set(ref this._editFormCmd, value);
-            }
-        }
-
-        public RelayCommand<SelectableForm> PublishFormCmd
-        {
-            get => this._publishFormCmd ?? (this._publishFormCmd = new RelayCommand<SelectableForm>(
-                       this.PublishFormAction));
-
-            set
-            {
-                if (value != this._publishFormCmd)
-                    this.Set(ref this._publishFormCmd, value);
-            }
-        }
-
-        public RelayCommand<SelectableForm> EndFormCmd
-        {
-            get => this._endFormCmd ?? (this._endFormCmd = new RelayCommand<SelectableForm>(
-                       this.EndFormAction));
-
-            set
-            {
-                if (value != this._endFormCmd)
-                    this.Set(ref this._endFormCmd, value);
             }
         }
 
@@ -249,7 +223,7 @@ namespace AdminWPFClient.ViewModels
             set
             {
                 this.FormsList?.ToList().ForEach(form => form.IsSelected = value);
-                this.RaisePropertyChanged();
+                this.RaisePropertyChanged(() => this.FormsList);
             }
         }
 
@@ -265,7 +239,6 @@ namespace AdminWPFClient.ViewModels
             // OnLoad
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
                 this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
-            this.FormsList.CollectionChanged += FormsList_CollectionChanged;
             this.FormsList_CollectionChanged(null, null);
         }
 
@@ -284,18 +257,6 @@ namespace AdminWPFClient.ViewModels
         private void EditFormAction(SelectableForm selectedForm)
         {
             MessageBox.Show("EditFormAction");
-        }
-
-        private void PublishFormAction(SelectableForm selectedForm)
-        {
-            this._formsService.PublishForm(selectedForm.Form);
-            selectedForm.RaisePropertyChanged();
-        }
-
-        private void EndFormAction(SelectableForm selectedForm)
-        {
-            this._formsService.EndForm(selectedForm.Form);
-            selectedForm.RaisePropertyChanged();
         }
 
         private void DuplicateFormAction(SelectableForm selectedForm)
