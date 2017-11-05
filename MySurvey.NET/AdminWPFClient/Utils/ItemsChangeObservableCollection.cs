@@ -24,8 +24,12 @@ namespace AdminWPFClient.Utils
             ObservableCollection<T> where T : INotifyPropertyChanged
     {
         public ItemsChangeObservableCollection(IEnumerable<T> items)
-            : base(items)
-        { }
+        {
+            foreach (var item in items)
+            {
+                this.Add(item);
+            }
+        }
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {

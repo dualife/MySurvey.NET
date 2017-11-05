@@ -10,7 +10,6 @@ using AdminWPFClient.Services;
 using AdminWPFClient.Utils;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Linq;
 using System.Windows;
 
@@ -47,7 +46,12 @@ namespace AdminWPFClient.ViewModels
             set
             {
                 if (value != this._formsList)
+                {
+                    if (this._formsList != null)
+                        this._formsList.CollectionChanged -= FormsList_CollectionChanged;
+                    value.CollectionChanged += FormsList_CollectionChanged;
                     this.Set(ref this._formsList, value);
+                }
             }
         }
 
@@ -238,6 +242,7 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
+                if (this.FormsList?.Count == 0) return false;
                 return this.FormsList?.All(form => form.IsSelected) ?? false;
             }
 
@@ -261,6 +266,7 @@ namespace AdminWPFClient.ViewModels
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
                 this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
             this.FormsList.CollectionChanged += FormsList_CollectionChanged;
+            this.FormsList_CollectionChanged(null, null);
         }
 
         private static void GoToFormUrlAction(SelectableForm selectedForm)

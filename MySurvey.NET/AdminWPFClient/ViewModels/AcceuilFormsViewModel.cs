@@ -48,7 +48,12 @@ namespace AdminWPFClient.ViewModels
             set
             {
                 if (value != this._formsList)
+                {
+                    if (this._formsList != null)
+                        this._formsList.CollectionChanged -= FormsList_CollectionChanged;
+                    value.CollectionChanged += FormsList_CollectionChanged;
                     this.Set(ref this._formsList, value);
+                }
             }
         }
 
@@ -255,13 +260,14 @@ namespace AdminWPFClient.ViewModels
         {
             get
             {
+                if (this.FormsList?.Count == 0) return false;
                 return this.FormsList?.All(form => form.IsSelected) ?? false;
             }
 
             set
             {
                 this.FormsList?.ToList().ForEach(form => form.IsSelected = value);
-                this.RaisePropertyChanged();
+                this.RaisePropertyChanged(() => this.FormsList);
             }
         }
 
@@ -291,7 +297,7 @@ namespace AdminWPFClient.ViewModels
             //}
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
                 this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
-            this.FormsList.CollectionChanged += FormsList_CollectionChanged;
+            this.FormsList_CollectionChanged(null, null);
         }
 
         private static void GoToFormUrlAction(SelectableForm selectedForm)
