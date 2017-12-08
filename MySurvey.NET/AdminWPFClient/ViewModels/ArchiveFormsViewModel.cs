@@ -238,7 +238,7 @@ namespace AdminWPFClient.ViewModels
         {
             // OnLoad
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                this._formsService.GetArchivedFormsList().Select(item => new SelectableForm(item)));
+                this._formsService.GetArchivedFormsList(this._userService.GetLoggedUsername()).Select(item => new SelectableForm(item)));
             this.FormsList_CollectionChanged(null, null);
         }
 

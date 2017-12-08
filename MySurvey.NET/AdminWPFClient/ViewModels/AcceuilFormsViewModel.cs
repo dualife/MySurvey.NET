@@ -296,7 +296,7 @@ namespace AdminWPFClient.ViewModels
             //        throw new ArgumentOutOfRangeException();
             //}
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                this._formsService.GetCurrentFormsList().Select(item => new SelectableForm(item)));
+                this._formsService.GetCurrentFormsList(this._userService.GetLoggedUsername()).Select(item => new SelectableForm(item)));
             this.FormsList_CollectionChanged(null, null);
         }
 

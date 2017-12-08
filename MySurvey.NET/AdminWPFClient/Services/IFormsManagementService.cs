@@ -16,9 +16,9 @@ namespace AdminWPFClient.Services
 
         bool DeleteForm(Form form);
 
-        IEnumerable<Form> GetCurrentFormsList();
+        IEnumerable<Form> GetCurrentFormsList(string author);
 
-        IEnumerable<Form> GetArchivedFormsList();
+        IEnumerable<Form> GetArchivedFormsList(string author);
 
         bool ArchiveForm(Form form);
 
@@ -27,6 +27,15 @@ namespace AdminWPFClient.Services
         bool EndForm(Form form);
 
         bool PublishForm(Form form);
+
         bool RestoreForm(Form form);
+
+        bool IsUserHaveAnyForm(string author);
+
+        void OverwriteMentionsText(string author, string newText);
+
+        void OverwriteConfirmationText(string author, string newText);
+
+        void OverwriteEndingText(string author, string newText);
     }
 }

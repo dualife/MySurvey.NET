@@ -47,14 +47,14 @@ namespace AdminWPFClient.Services
             return this._forms.Remove(form);
         }
 
-        public IEnumerable<Form> GetCurrentFormsList()
+        public IEnumerable<Form> GetCurrentFormsList(string author)
         {
-            return this._forms.Where(element => element.Status != Form.State.Archived);
+            return this._forms.Where(element => element.AuthorName == author && element.Status != Form.State.Archived);
         }
 
-        public IEnumerable<Form> GetArchivedFormsList()
+        public IEnumerable<Form> GetArchivedFormsList(string author)
         {
-            return this._forms.Where(element => element.Status == Form.State.Archived);
+            return this._forms.Where(element => element.AuthorName == author && element.Status == Form.State.Archived);
         }
 
         private int GetNewId()
@@ -87,6 +87,38 @@ namespace AdminWPFClient.Services
         public bool RestoreForm(Form form)
         {
             return form.Restore();
+        }
+
+        public bool IsUserHaveAnyForm(string author)
+        {
+            return this._forms.Any(element => element.AuthorName == author);
+        }
+
+        public void OverwriteMentionsText(string author, string newText)
+        {
+            var concernedItems = this._forms.Where(i => i.AuthorName == author && i.Status != Form.State.Archived);
+            foreach (var form in concernedItems)
+            {
+                form.MentionsTxt = newText;
+            }
+        }
+
+        public void OverwriteConfirmationText(string author, string newText)
+        {
+            var concernedItems = this._forms.Where(i => i.AuthorName == author && i.Status != Form.State.Archived);
+            foreach (var form in concernedItems)
+            {
+                form.ConfirmationTxt = newText;
+            }
+        }
+
+        public void OverwriteEndingText(string author, string newText)
+        {
+            var concernedItems = this._forms.Where(i => i.AuthorName == author && i.Status != Form.State.Archived);
+            foreach (var form in concernedItems)
+            {
+                form.EndingTxt = newText;
+            }
         }
     }
 }
