@@ -8,6 +8,7 @@
 using AdminWPFClient.Models;
 using AdminWPFClient.Services;
 using AdminWPFClient.Utils;
+using AdminWPFClient.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Linq;
@@ -314,7 +315,8 @@ namespace AdminWPFClient.ViewModels
 
         private void EditFormAction(SelectableForm selectedForm)
         {
-            MessageBox.Show("EditFormAction");
+            var newWindow = new EditFormWindow();
+            newWindow.Show();
         }
 
         private void PublishFormAction(SelectableForm selectedForm)

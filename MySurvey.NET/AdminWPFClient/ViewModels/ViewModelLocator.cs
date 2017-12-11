@@ -5,17 +5,6 @@
 // as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 // </copyright>
 
-/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:AdminWPFClient.ViewModel"
-                                   x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-*/
-
 using AdminWPFClient.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -55,6 +44,7 @@ namespace AdminWPFClient.ViewModels
             SimpleIoc.Default.Register<ArchiveFormsViewModel>();
             SimpleIoc.Default.Register<TextTabViewModel>();
             SimpleIoc.Default.Register<EditAccountViewModel>();
+            SimpleIoc.Default.Register<EditFormViewModel>();
 
         }
 
@@ -75,6 +65,8 @@ namespace AdminWPFClient.ViewModels
         public TextTabViewModel TextTab => ServiceLocator.Current.GetInstance<TextTabViewModel>();
 
         public EditAccountViewModel EditAccount => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
+
+        public EditFormViewModel EditForm => ServiceLocator.Current.GetInstance<EditFormViewModel>();
 
         /// <summary>
         /// Cleans up all the resources.

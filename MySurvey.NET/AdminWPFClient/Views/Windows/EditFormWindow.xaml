@@ -1,0 +1,15 @@
+﻿<Window x:Class="AdminWPFClient.Windows.EditFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        mc:Ignorable="d ignore"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:uc="clr-namespace:AdminWPFClient.UserControls"
+        Width="860" Height="500" Title="MySurvey.NET"
+        DataContext="{Binding EditForm, Source={StaticResource Locator}}">
+
+   
+</Window>
