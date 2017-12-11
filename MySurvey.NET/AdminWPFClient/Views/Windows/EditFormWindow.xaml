@@ -10,6 +10,20 @@
         xmlns:uc="clr-namespace:AdminWPFClient.UserControls"
         Width="860" Height="500" Title="MySurvey.NET"
         DataContext="{Binding EditForm, Source={StaticResource Locator}}">
+    <DockPanel>
 
-   
+        <DockPanel  DockPanel.Dock="Top">
+            <Button Margin="3" DockPanel.Dock="Left" Content="Aide" Command="{Binding HelpCmd}"/>
+
+            <Button Margin="3" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Appercu" Command="{Binding HelpCmd}"/>
+
+            <Button Margin="3" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Sauvegarder" Command="{Binding HelpCmd}"/>
+
+        </DockPanel>
+        <TabPanel>
+            
+        </TabPanel>
+        
+    </DockPanel>
+
 </Window>
