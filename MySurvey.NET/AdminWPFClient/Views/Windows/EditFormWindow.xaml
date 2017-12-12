@@ -8,22 +8,66 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:uc="clr-namespace:AdminWPFClient.UserControls"
-        Width="860" Height="500" Title="MySurvey.NET"
+        Width="860" Height="500" Title="Editer formulaire"
         DataContext="{Binding EditForm, Source={StaticResource Locator}}">
     <DockPanel>
 
-        <DockPanel  DockPanel.Dock="Top">
+        <DockPanel DockPanel.Dock="Top">
+            
             <Button Margin="3" DockPanel.Dock="Left" Content="Aide" Command="{Binding HelpCmd}"/>
-
+            <Button Margin="3" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Sauvegarder" Command="{Binding HelpCmd}"/>
             <Button Margin="3" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Appercu" Command="{Binding HelpCmd}"/>
 
-            <Button Margin="3" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Sauvegarder" Command="{Binding HelpCmd}"/>
-
         </DockPanel>
-        <TabPanel>
-            
-        </TabPanel>
-        
+
+        <Separator DockPanel.Dock="Top" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="3" >
+                <WrapPanel >
+                    <TextBlock Margin="3" Text="Pages"/>
+                    <Button HorizontalAlignment="Right" Content="&lt;" >
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Agrandir/Reduire</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </WrapPanel>
+
+                <Button>Header</Button>
+                <Button>Page 1</Button>
+                <Button>Page 2</Button>
+                <Button>Page 3</Button>
+                <Button>Footer</Button>
+            </StackPanel>
+
+            <Canvas     Grid.Column="1" Background="Gray"  >
+            </Canvas>
+
+            <StackPanel HorizontalAlignment="Right" Margin="3" Grid.Column="2">
+                <WrapPanel >
+                    <Button HorizontalAlignment="Left" Content="&gt;" >
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Agrandir/Reduire</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <TextBlock Margin="3" Text="Types de questions"/>
+                </WrapPanel>
+                <Button>Bullets</Button>
+                <Button>Texte</Button>
+                <Button>RadioButton</Button>
+            </StackPanel>
+        </Grid>
+
     </DockPanel>
 
 </Window>
