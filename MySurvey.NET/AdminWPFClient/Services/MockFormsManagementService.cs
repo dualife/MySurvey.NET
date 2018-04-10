@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AdminWPFClient.Models;
 
 namespace AdminWPFClient.Services
@@ -50,6 +51,11 @@ namespace AdminWPFClient.Services
         public IEnumerable<Form> GetCurrentFormsList(string author)
         {
             return this._forms.Where(element => element.AuthorName == author && element.Status != Form.State.Archived);
+        }
+
+        public async Task<IEnumerable<Form>> GetCurrentFormsListAsync(string author)
+        {
+            return await Task.Run(() => this._forms.Where(element => element.AuthorName == author && element.Status != Form.State.Archived));
         }
 
         public IEnumerable<Form> GetArchivedFormsList(string author)

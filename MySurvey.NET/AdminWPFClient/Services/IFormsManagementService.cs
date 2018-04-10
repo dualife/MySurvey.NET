@@ -7,6 +7,7 @@
 
 using AdminWPFClient.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AdminWPFClient.Services
 {
@@ -17,6 +18,8 @@ namespace AdminWPFClient.Services
         bool DeleteForm(Form form);
 
         IEnumerable<Form> GetCurrentFormsList(string author);
+
+        Task<IEnumerable<Form>> GetCurrentFormsListAsync(string author);
 
         IEnumerable<Form> GetArchivedFormsList(string author);
 

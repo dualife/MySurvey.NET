@@ -279,7 +279,7 @@ namespace AdminWPFClient.ViewModels
             this.RaisePropertyChanged(() => this.IsAllFormsSelected);
         }
 
-        private void LoadedAction(string uclName)
+        private async void LoadedAction(string uclName)
         {
             // OnLoad
             //this._context = uclName;
@@ -296,8 +296,9 @@ namespace AdminWPFClient.ViewModels
             //    default:
             //        throw new ArgumentOutOfRangeException();
             //}
+            var allForms = await this._formsService.GetCurrentFormsListAsync(this._userService.GetLoggedUsername());
             this.FormsList = new ItemsChangeObservableCollection<SelectableForm>(
-                this._formsService.GetCurrentFormsList(this._userService.GetLoggedUsername()).Select(item => new SelectableForm(item)));
+                allForms.Select(item => new SelectableForm(item)));
             this.FormsList_CollectionChanged(null, null);
         }
 
